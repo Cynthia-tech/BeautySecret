@@ -1,18 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_black_1000"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.3"
+        android:contentDescription="@string/imageview"
+        android:scaleType="centerCrop"
+        android:src="@drawable/home_logo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <yanzhikai.textpath.SyncTextPathView
+        android:id="@+id/tv_app_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_for_ladies"
+        android:layout_marginBottom="5dp"
+        app:duration="3000"
+        app:paintStrokeColor="@color/md_white_1000"
+        app:pathStrokeColor="@color/md_white_1000"
+        app:showPainter="true"
+        app:text="@string/beauty_secret"
+        app:textInCenter="true"
+        app:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tv_for_ladies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_join_now"
+        android:layout_marginBottom="200dp"
+        android:text="@string/for_ladies"
+        android:textAlignment="center"
+        android:textColor="@color/md_white_1000"
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/btn_join_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_login"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/input_bg"
+        android:padding="10dp"
+        android:text="@string/join_now"
+        android:textColor="@color/md_white_1000"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/buttons_bg"
+        android:padding="10dp"
+        android:text="@string/already_have_an_account_login"
+        android:textAllCaps="false"
+        android:textColor="@color/md_white_1000"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "665964709143",
+    "firebase_url": "https://beautysecret-14ff3.firebaseio.com",
+    "project_id": "beautysecret-14ff3",
+    "storage_bucket": "beautysecret-14ff3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665964709143:android:10137ab73080ec5da6e352",
+        "android_client_info": {
+          "package_name": "com.frontiertechnologypartners.beautysecret"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665964709143-rfb60h2qrnvo5u2tev347ohj4m77kkmm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.frontiertechnologypartners.beautysecret",
+            "certificate_hash": "fe885d3d03436a9811f7a2ceff9a26c793e5d7b2"
+          }
+        },
+        {
+          "client_id": "665964709143-9hcr7hvmtd7eibdqr47tkfhv5nsn632a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2TC3ogoxQ1VAU2Qgu_ReEXXz9Eqt6Mc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665964709143-9hcr7hvmtd7eibdqr47tkfhv5nsn632a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

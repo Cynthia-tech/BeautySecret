@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">BeautySecret</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="imageview">ImageView</string>
+    <string name="register">Register</string>
+    <string name="join_now">join now</string>
+    <string name="beauty_secret">Beauty Secret</string>
+    <string name="for_ladies">For Ladies</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="phone_number">Phone number</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="require_name">Enter your name</string>
+    <string name="require_phone">Enter your phone number</string>
+    <string name="require_password">Enter your password</string>
+    <string name="require_confirm_password">Enter your confirm password</string>
+    <string name="password_matcher">Password didn\'t match</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="not_admin">I\'m not an Admin?</string>
+    <string name="admin">I\'m an Admin?</string>
+    <string name="login_admin">Login Admin</string>
 </resources>
