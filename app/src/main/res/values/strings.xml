@@ -21,4 +21,98 @@
     <string name="not_admin">I\'m not an Admin?</string>
     <string name="admin">I\'m an Admin?</string>
     <string name="login_admin">Login Admin</string>
+    <string name="add_product">Add Product</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_color">Product Color</string>
+    <string name="product_price">Product Price</string>
+    <string name="require_image">Product image is mandatory...</string>
+    <string name="require_product_name">Please write product name...</string>
+    <string name="require_product_color">Please write product color...</string>
+    <string name="require_product_price">Please write product price...</string>
+
+    <array name="brand_name">
+        <item>MAYBELLINE</item>
+        <item>LOREAL</item>
+        <item>REVLON</item>
+    </array>
+    <array name="category_name">
+        <item>EYES COSMETICS</item>
+        <item>FACE COSMETICS</item>
+        <item>LIP COSMETICS</item>
+    </array>
+    <!--eyes-->
+    <array name="maybelline_eye_category_name">
+        <item>BROW FAST SHAPES EYEBROW</item>
+        <item>TATTOOSTUDIO BROW</item>
+        <item>TATTOOSTUDIO BROW TINT PEN</item>
+        <item>LASTING MATTE LACQUER GEL EYELINER</item>
+    </array>
+    <array name="loreal_eye_category_name">
+        <item>ORIGINAL WASHABLE BOLD EYE MASCARA</item>
+        <item>LONGWEAR WATERPROOF BROW GEL</item>
+        <item>MICRO INK PEN</item>
+        <item>LIQUID DIP EYELINER WATERPROOF</item>
+    </array>
+    <array name="revlon_eye_category_name">
+        <item>COLORSTAY BROW MOUSSE</item>
+        <item>COLORSTAY EYELINER</item>
+        <item>REVLON ULTIMATE ALL-IN-ONE MASCARA</item>
+        <item>REVLON VOLUMAZING MASCARA</item>
+    </array>
+
+    <!--face-->
+    <array name="maybelline_face_category_name">
+        <item>Dream URBAN Cover Full Coverage Foundation</item>
+        <item>CHEEK HEAT GEL CREAM BLUSH</item>
+        <item>FIT ME BLUSH</item>
+        <item>SUPERSTAY FULL COVERAGE POWDER</item>
+    </array>
+    <array name="loreal_face_category_name">
+        <item>INFALLIBLE FULL WEAR CONCEALER</item>
+        <item>TRUE MATCH CRAYON CONCEALER</item>
+        <item>TRUE MATCH LIQUID CONCEALER</item>
+        <item>INFALLIBLE 24 H FRESH WEAR FOUNDATION</item>
+    </array>
+    <array name="revlon_face_category_name">
+        <item>PHOTOREADY CHEEK FLUSHING TINT</item>
+        <item>COLORSTAY ENDLESS GLOW LIQUID HIGHLIGHTER</item>
+        <item>COLORSTAY CONCEALER</item>
+        <item>MAKEUP CONCEALER</item>
+    </array>
+
+    <!--lip-->
+    <array name="maybelline_lip_category_name">
+        <item>COLOR SENSATIONAL MATTE LIPSTICK</item>
+        <item>LIPSTUDIO PLUMPER LIPSTICK</item>
+        <item>SUPERSTAY INK CRAYON LIPSTICK</item>
+        <item>SUPERSTAY MATTE INK LIQUID LIPSTICK COFFEE EDITION</item>
+    </array>
+    <array name="loreal_lip_category_name">
+        <item>8 HR LE GLOSS</item>
+        <item>COLOUR RICHE</item>
+        <item>MATTE LIP CRAYON LASTING WEAR</item>
+        <item>ROUGE SIGNATURE MATTE LIP STAIN</item>
+    </array>
+    <array name="revlon_lip_category_name">
+        <item>COLORSTAY ULTIMATE LIPSTICK</item>
+        <item>REVLON CUSHION LIP TINT</item>
+        <item>REVLON ULTRA HD MATTE LIPCOLOR</item>
+        <item>SUPER LUSTROUS LIPSTICK</item>
+    </array>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="cart">Cart</string>
+    <string name="orders">Orders</string>
+    <string name="logout">Logout</string>
 </resources>

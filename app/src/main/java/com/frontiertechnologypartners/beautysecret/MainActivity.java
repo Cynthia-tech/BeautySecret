@@ -6,7 +6,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.frontiertechnologypartners.beautysecret.Prevalent.Prevalent;
+import com.frontiertechnologypartners.beautysecret.ui.admin.AdminAddNewProductActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.ui.home.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.login.LoginActivity;
@@ -20,6 +20,9 @@ import io.paperdb.Paper;
 import yanzhikai.textpath.SyncTextPathView;
 import yanzhikai.textpath.painter.FireworksPainter;
 
+import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_ADMIN_LOGIN;
+import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_FIRST_TIME_LUNCH;
+
 public class MainActivity extends BaseActivity {
     @BindView(R.id.tv_app_title)
     SyncTextPathView tvTitle;
@@ -30,7 +33,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean isFirstTimeLunch = Paper.book().read(Prevalent.IS_FIRST_TIME_LUNCH, true);
+        boolean isFirstTimeLunch = Paper.book().read(IS_FIRST_TIME_LUNCH, true);
         if (!isFirstTimeLunch) {
             lunchHomeScreen();
             finish();
@@ -52,8 +55,15 @@ public class MainActivity extends BaseActivity {
     }
 
     private void lunchHomeScreen() {
-        startActivity(new Intent(MainActivity.this, HomeActivity.class));
-        finish();
+        boolean isAdminLogin = Paper.book().read(IS_ADMIN_LOGIN, false);
+        if (isAdminLogin) {
+            startActivity(new Intent(MainActivity.this, AdminAddNewProductActivity.class));
+            finish();
+        } else {
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
+        }
+
     }
 
 

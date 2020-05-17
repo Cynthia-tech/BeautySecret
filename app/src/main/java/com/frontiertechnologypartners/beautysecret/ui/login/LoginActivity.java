@@ -9,11 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.frontiertechnologypartners.beautysecret.Prevalent.Prevalent;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Users;
+import com.frontiertechnologypartners.beautysecret.ui.admin.AdminAddNewProductActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.home.AdminCategoryActivity;
 import com.frontiertechnologypartners.beautysecret.ui.home.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +26,10 @@ import butterknife.OnClick;
 import io.paperdb.Paper;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN;
+import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_ADMIN_LOGIN;
+import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_FIRST_TIME_LUNCH;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.USER;
+import static com.frontiertechnologypartners.beautysecret.util.Constant.currentOnlineUser;
 
 
 public class LoginActivity extends BaseActivity {
@@ -104,16 +106,19 @@ public class LoginActivity extends BaseActivity {
                                     Toast.makeText(LoginActivity.this, "Welcome Admin, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
 
-                                    Paper.book().write(Prevalent.IS_FIRST_TIME_LUNCH, false);
-                                    Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
+                                    Paper.book().write(IS_FIRST_TIME_LUNCH, false);
+                                    Paper.book().write(IS_ADMIN_LOGIN, true);
+                                    Intent intent = new Intent(LoginActivity.this, AdminAddNewProductActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
                                     Toast.makeText(LoginActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
 
-                                    Paper.book().write(Prevalent.IS_FIRST_TIME_LUNCH, false);
+                                    Paper.book().write(IS_FIRST_TIME_LUNCH, false);
+                                    Paper.book().write(IS_ADMIN_LOGIN, false);
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    currentOnlineUser = usersData;
                                     startActivity(intent);
                                     finish();
                                 }
