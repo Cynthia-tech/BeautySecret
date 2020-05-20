@@ -145,9 +145,10 @@ public class AdminAddNewProductActivity extends BaseActivity {
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("productName", productName);
         productMap.put("productColor", productColor);
-        productMap.put("productPrice", productPrice);
+        productMap.put("productPrice", "$" + productPrice);
         productMap.put("image", downloadImageUri);
-        dbRef.child(PRODUCTS).child(brandName).child(productCategoryName).child(productSubCategoryName).updateChildren(productMap)
+        String keyId = dbRef.push().getKey();
+        dbRef.child(PRODUCTS).child(brandName).child(productCategoryName).child(productSubCategoryName).child(keyId).setValue(productMap)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         loadingBar.dismiss();

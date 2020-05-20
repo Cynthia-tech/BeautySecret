@@ -9,14 +9,49 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.cart.CartActivity"
+            android:label="@string/cart"/>
+        <activity
+            android:name=".ui.common.ProductDetailActivity"
+            android:label="@string/product_detail" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
+        <activity
+            android:name=".ui.common.ProductsActivity"
+            android:label="" />
+        <activity
+            android:name=".ui.revlon.RevlonLipCosmeticActivity"
+            android:label="@string/lip_consmetic_title" />
+        <activity
+            android:name=".ui.revlon.RevlonFaceCosmeticActivity"
+            android:label="@string/face_consmetic_title" />
+        <activity
+            android:name=".ui.revlon.RevlonEyeCosmeticActivity"
+            android:label="@string/eye_consmetic_title" />
+        <activity
+            android:name=".ui.loreal.LorealLipCosmeticActivity"
+            android:label="@string/lip_consmetic_title" />
+        <activity
+            android:name=".ui.loreal.LorealFaceCosmeticActivity"
+            android:label="@string/face_consmetic_title" />
+        <activity
+            android:name=".ui.loreal.LorealEyeCosmeticActivity"
+            android:label="@string/eye_consmetic_title" />
+        <activity
+            android:name=".ui.maybelline.MaybellineLipCosmeticActivity"
+            android:label="@string/lip_consmetic_title" />
+        <activity
+            android:name=".ui.maybelline.MaybellineFaceCosmeticActivity"
+            android:label="@string/face_consmetic_title" />
+        <activity
+            android:name=".ui.maybelline.MaybellineEyeCosmeticActivity"
+            android:label="@string/eye_consmetic_title" />
+        <activity
+            android:name=".ui.common.BrandCategoryActivity"
+            android:label="" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.admin.AdminAddNewProductActivity" />
         <activity android:name=".ui.home.AdminCategoryActivity" />
         <activity

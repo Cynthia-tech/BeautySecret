@@ -36,7 +36,7 @@
         <item>REVLON</item>
     </array>
     <array name="category_name">
-        <item>EYES COSMETICS</item>
+        <item>EYE COSMETICS</item>
         <item>FACE COSMETICS</item>
         <item>LIP COSMETICS</item>
     </array>
@@ -77,7 +77,7 @@
         <item>PHOTOREADY CHEEK FLUSHING TINT</item>
         <item>COLORSTAY ENDLESS GLOW LIQUID HIGHLIGHTER</item>
         <item>COLORSTAY CONCEALER</item>
-        <item>MAKEUP CONCEALER</item>
+        <item>PHOTOREADY CONCEALER</item>
     </array>
 
     <!--lip-->
@@ -115,4 +115,55 @@
     <string name="cart">Cart</string>
     <string name="orders">Orders</string>
     <string name="logout">Logout</string>
+    <string name="l_oreal_paris">L\'OREAL PARIS</string>
+    <string name="loreal">LOREAL</string>
+    <string name="revlon">REVLON</string>
+    <string name="brands">BRANDS</string>
+    <string name="maybelline">MAYBELLINE</string>
+    <string name="maybelline_brands">MAYBELLINE BRANDS</string>
+    <string name="lip_consmetic_title">LIP COSMETICS</string>
+    <string name="eye_consmetic_title">EYE COSMETICS</string>
+    <string name="face_consmetic_title">FACE COSMETICS</string>
+    <string name="brow_fast_shapes_eyebrow">BROW FAST SHAPES EYEBROW</string>
+    <string name="tattoostudio_brow">TATTOOSTUDIO BROW</string>
+    <string name="tattoostudio_brow_tint_pen">TATTOOSTUDIO BROW TINT PEN</string>
+    <string name="lasting_matte_lacquer_gel_eyeliner">LASTING MATTE LACQUER GEL EYELINER</string>
+    <string name="dream_urban_cover_full_coverage_foundation">Dream URBAN Cover Full Coverage Foundation</string>
+    <string name="cheek_heat_gel_cream_blush">CHEEK HEAT GEL CREAM BLUSH</string>
+    <string name="fit_me_blush">FIT ME BLUSH</string>
+    <string name="superstay_full_coverage_powder">SUPERSTAY FULL COVERAGE POWDER</string>
+    <string name="color_sensational_matte_lipstick">COLOR SENSATIONAL MATTE LIPSTICK</string>
+    <string name="lipstudio_plumper_lipstick">LIPSTUDIO PLUMPER LIPSTICK</string>
+    <string name="superstay_ink_crayon_lipstick">SUPERSTAY INK CRAYON LIPSTICK</string>
+    <string name="superstay_matte_ink_liquid_lipstick_coffee_edition">SUPERSTAY MATTE INK LIQUID LIPSTICK COFFEE EDITION</string>
+    <string name="original_washable_bold_eye_mascara">ORIGINAL WASHABLE BOLD EYE MASCARA</string>
+    <string name="longwear_waterproof_brow_gel">LONGWEAR WATERPROOF BROW GEL</string>
+    <string name="micro_ink_pen">MICRO INK PEN</string>
+    <string name="liquid_dip_eyeliner_waterproof">LIQUID DIP EYELINER WATERPROOF</string>
+    <string name="infallible_full_wear_concealer">INFALLIBLE FULL WEAR CONCEALER</string>
+    <string name="true_match_crayon_concealer">TRUE MATCH CRAYON CONCEALER</string>
+    <string name="true_match_liquid_concealer">TRUE MATCH LIQUID CONCEALER</string>
+    <string name="infallible_24_h_fresh_wear_foundation">INFALLIBLE 24 H FRESH WEAR FOUNDATION</string>
+    <string name="_8_hr_le_gloss">8 HR LE GLOSS</string>
+    <string name="colour_riche">COLOUR RICHE</string>
+    <string name="matte_lip_crayon_lasting_wear">MATTE LIP CRAYON LASTING WEAR</string>
+    <string name="rouge_signature_matte_lip_stain">ROUGE SIGNATURE MATTE LIP STAIN</string>
+    <string name="colorstay_brow_mousse">COLORSTAY BROW MOUSSE</string>
+    <string name="colorstay_eyeliner">COLORSTAY EYELINER</string>
+    <string name="revlon_ultimate_all_in_one_mascara">REVLON ULTIMATE ALL-IN-ONE MASCARA</string>
+    <string name="revlon_volumazing_mascara">REVLON VOLUMAZING MASCARA</string>
+    <string name="photoready_cheek_flushing_tint">PHOTOREADY CHEEK FLUSHING TINT</string>
+    <string name="colorstay_endless_glow_liquid_highlighter">COLORSTAY ENDLESS GLOW LIQUID HIGHLIGHTER</string>
+    <string name="colorstay_concealer">COLORSTAY CONCEALER</string>
+    <string name="makeup_concealer">MAKEUP CONCEALER</string>
+    <string name="photoready_concealer">PHOTOREADY CONCEALER</string>
+    <string name="colorstay_ultimate_lipstick">COLORSTAY ULTIMATE LIPSTICK</string>
+    <string name="revlon_cushion_lip_tint">REVLON CUSHION LIP TINT</string>
+    <string name="revlon_ultra_hd_matte_lipcolor">REVLON ULTRA HD MATTE LIPCOLOR</string>
+    <string name="super_lustrous_lipstick">SUPER LUSTROUS LIPSTICK</string>
+    <string name="no_products">No Products</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="no_cart">No Cart</string>
+    <string name="next">Next</string>
 </resources>

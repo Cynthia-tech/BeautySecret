@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.frontiertechnologypartners.beautysecret.ui.admin.ui.HomeFragment"
+        android:name="com.frontiertechnologypartners.beautysecret.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
     </fragment>
 
     <fragment
         android:id="@+id/nav_cart"
-        android:name="com.frontiertechnologypartners.beautysecret.ui.admin.ui.GalleryFragment"
+        android:name="com.frontiertechnologypartners.beautysecret.ui.admin.GalleryFragment"
         android:label="@string/cart"
         tools:layout="@layout/fragment_gallery">
         <action
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/nav_orders"
-        android:name="com.frontiertechnologypartners.beautysecret.ui.admin.ui.SlideshowFragment"
+        android:name="com.frontiertechnologypartners.beautysecret.ui.admin.SlideshowFragment"
         android:label="@string/orders"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

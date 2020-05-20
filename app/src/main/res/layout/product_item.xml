@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/input_bg"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/imageview"
+            android:padding="5dp"
+            android:src="@drawable/ic_revlon_eye3" />
+
+        <TextView
+            android:id="@+id/tv_product_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="@string/revlon_ultimate_all_in_one_mascara"
+            android:textAlignment="center"
+            android:textColor="@color/md_black_1000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:padding="2dp"
+            android:text="@string/revlon_ultimate_all_in_one_mascara"
+            android:textAlignment="center"
+            android:textColor="@color/md_black_1000"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

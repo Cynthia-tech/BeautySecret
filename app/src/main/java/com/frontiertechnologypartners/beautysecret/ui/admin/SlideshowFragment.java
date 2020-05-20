@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.admin.ui;
+package com.frontiertechnologypartners.beautysecret.ui.admin;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,12 +15,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 
-public class HomeFragment extends Fragment {
+public class SlideshowFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        getActivity().setTitle(getResources().getString(R.string.menu_slideshow));
         return root;
     }
 }

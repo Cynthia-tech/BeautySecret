@@ -28,8 +28,8 @@ import io.paperdb.Paper;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_ADMIN_LOGIN;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_FIRST_TIME_LUNCH;
+import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.USER;
-import static com.frontiertechnologypartners.beautysecret.util.Constant.currentOnlineUser;
 
 
 public class LoginActivity extends BaseActivity {
@@ -117,8 +117,8 @@ public class LoginActivity extends BaseActivity {
 
                                     Paper.book().write(IS_FIRST_TIME_LUNCH, false);
                                     Paper.book().write(IS_ADMIN_LOGIN, false);
+                                    Paper.book().write(LOGIN_USER_DATA, usersData);
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                    currentOnlineUser = usersData;
                                     startActivity(intent);
                                     finish();
                                 }

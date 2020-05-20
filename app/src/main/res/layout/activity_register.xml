@@ -19,13 +19,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/user_profile_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/profile"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="5dp" />
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_edit"
+                android:layout_centerInParent="true"
+                android:tint="@color/md_white_1000"/>
+        </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -51,8 +74,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
                 android:hint="@string/phone_number"
-                android:padding="10dp"
                 android:inputType="number"
+                android:padding="10dp"
                 android:textColor="@color/md_white_1000"
                 android:textColorHint="@color/md_white_1000" />
         </com.google.android.material.textfield.TextInputLayout>

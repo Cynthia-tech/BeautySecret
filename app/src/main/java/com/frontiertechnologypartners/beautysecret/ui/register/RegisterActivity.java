@@ -1,14 +1,21 @@
 package com.frontiertechnologypartners.beautysecret.ui.register;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.frontiertechnologypartners.beautysecret.R;
@@ -18,6 +25,8 @@ import com.frontiertechnologypartners.beautysecret.util.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
 
@@ -36,7 +45,15 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.et_confirm_password)
     EditText etConfirmPassword;
 
+    @BindView(R.id.user_profile_layout)
+    RelativeLayout userProfileLayout;
+
+    @BindView(R.id.img_profile)
+    CircleImageView imgProfile;
+
     private String name, phone, password, confirmPassword;
+    private Uri imageUri;
+    private String downloadImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +62,20 @@ public class RegisterActivity extends BaseActivity {
         ButterKnife.bind(this);
         // making notification bar transparent
         Util.changeStatusBarColor(this);
+        userProfileLayout.setOnClickListener(v -> CropImage.activity(imageUri)
+                .setAspectRatio(1, 1)
+                .start(RegisterActivity.this));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            imageUri = result.getUri();
+
+            imgProfile.setImageURI(imageUri);
+        }
     }
 
     @OnClick(R.id.btn_create_account)
@@ -75,29 +106,47 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
+    private void uploadProfileImage() {
+        if (imageUri != null) {
+            final StorageReference fileReference = userProfileStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+            uploadTask = fileReference.putFile(imageUri)
+                    .addOnSuccessListener(taskSnapshot -> fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                        downloadImageUri = uri.toString();
+                        saveRegisterData();
+                    })).addOnFailureListener(e -> loadingBar.dismiss());
+        }else {
+            saveRegisterData();
+        }
+    }
+
+    private void saveRegisterData() {
+        HashMap<String, Object> userdataMap = new HashMap<>();
+        userdataMap.put("name", name);
+        userdataMap.put("phone", phone);
+        userdataMap.put("password", password);
+        userdataMap.put("image", downloadImageUri);
+
+        dbRef.child(USER).child(name).updateChildren(userdataMap)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(RegisterActivity.this, "Congratulations, your account has been created.", Toast.LENGTH_LONG).show();
+                        loadingBar.dismiss();
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        loadingBar.dismiss();
+                        Toast.makeText(RegisterActivity.this, "Something wrong. Please try again later..", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
     private void validateRegisterName() {
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!(dataSnapshot.child(USER).child(name).exists())) {
-                    HashMap<String, Object> userdataMap = new HashMap<>();
-                    userdataMap.put("name", name);
-                    userdataMap.put("phone", phone);
-                    userdataMap.put("password", password);
-
-                    dbRef.child(USER).child(name).updateChildren(userdataMap)
-                            .addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(RegisterActivity.this, "Congratulations, your account has been created.", Toast.LENGTH_LONG).show();
-                                    loadingBar.dismiss();
-                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    loadingBar.dismiss();
-                                    Toast.makeText(RegisterActivity.this, "Something wrong. Please try again later..", Toast.LENGTH_LONG).show();
-                                }
-                            });
+                    uploadProfileImage();
                 } else {
                     Toast.makeText(RegisterActivity.this, "This username already exists. Please try again using another name", Toast.LENGTH_LONG).show();
                     loadingBar.dismiss();
@@ -109,5 +158,11 @@ public class RegisterActivity extends BaseActivity {
                 loadingBar.dismiss();
             }
         });
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
     }
 }

@@ -7,11 +7,15 @@ import com.frontiertechnologypartners.beautysecret.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HeaderViewHolder {
 
     @BindView(R.id.user_profile_name)
     TextView tvUserName;
+
+    @BindView(R.id.user_profile_image)
+    CircleImageView imgUserProfileImage;
 
     HeaderViewHolder(View view) {
         ButterKnife.bind(this, view);

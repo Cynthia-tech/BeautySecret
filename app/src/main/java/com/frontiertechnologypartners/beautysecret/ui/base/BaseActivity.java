@@ -17,6 +17,7 @@ public class BaseActivity extends AppCompatActivity {
     protected ProgressDialog loadingBar;
     protected DatabaseReference dbRef;
     protected StorageReference storageRef;
+    protected StorageReference userProfileStorageRef;
     protected StorageTask uploadTask;
 
     @Override
@@ -28,6 +29,7 @@ public class BaseActivity extends AppCompatActivity {
 
         dbRef = FirebaseDatabase.getInstance().getReference();
         storageRef = FirebaseStorage.getInstance().getReference("Product Images");
+        userProfileStorageRef = FirebaseStorage.getInstance().getReference("Profile Images");
         Paper.init(this);
     }
 }
