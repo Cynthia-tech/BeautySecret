@@ -304,8 +304,8 @@ public class ProductsActivity extends BaseActivity implements OnRecyclerItemClic
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             Product product = dataSnapshot1.getValue(Product.class);
                             products.add(product);
-                            productsAdapter.setItems(products);
                         }
+                        productsAdapter.setItems(products);
                         tvNoProduct.setVisibility(View.GONE);
                     } else {
                         tvNoProduct.setVisibility(View.VISIBLE);

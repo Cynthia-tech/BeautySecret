@@ -7,6 +7,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.frontiertechnologypartners.beautysecret.ui.admin.AdminAddNewProductActivity;
+import com.frontiertechnologypartners.beautysecret.ui.admin.AdminHomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.ui.home.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.login.LoginActivity;
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity {
     private void lunchHomeScreen() {
         boolean isAdminLogin = Paper.book().read(IS_ADMIN_LOGIN, false);
         if (isAdminLogin) {
-            startActivity(new Intent(MainActivity.this, AdminAddNewProductActivity.class));
+            startActivity(new Intent(MainActivity.this, AdminHomeActivity.class));
             finish();
         } else {
             startActivity(new Intent(MainActivity.this, HomeActivity.class));

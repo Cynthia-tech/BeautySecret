@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/cart_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_order_pd_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="Product Name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_order_pd_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="Product Name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_order_pd_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="Product Name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_order_pd_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="Product Name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

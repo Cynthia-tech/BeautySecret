@@ -39,7 +39,7 @@ public class ProductViewHolder extends BaseViewHolder<Product, OnRecyclerItemCli
                 .into(imgProduct);
 
         tvProductColor.setText(product.getProductColor());
-        tvProductPrice.setText(product.getProductPrice());
+        tvProductPrice.setText("$ " + product.getProductPrice());
         itemView.setOnClickListener(view -> getListener().onItemClick(getAdapterPosition()));
     }
 }

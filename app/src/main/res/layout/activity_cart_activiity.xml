@@ -29,7 +29,8 @@
             android:id="@+id/rv_cart_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/btn_next" />
+            android:layout_above="@+id/btn_next"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/tv_no_cart"
@@ -50,7 +51,8 @@
             android:background="@drawable/buttons_bg"
             android:text="@string/next"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

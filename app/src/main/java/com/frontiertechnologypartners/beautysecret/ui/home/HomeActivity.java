@@ -17,6 +17,7 @@ import com.frontiertechnologypartners.beautysecret.ui.admin.SlideshowFragment;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.ui.cart.CartActivity;
 import com.frontiertechnologypartners.beautysecret.ui.login.LoginActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.UserOrderHistoryActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -126,7 +127,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivity(intent);
                 break;
             case R.id.nav_orders:
-                fragment = new SlideshowFragment();
+                Intent orderHistoryIntent = new Intent(HomeActivity.this, UserOrderHistoryActivity.class);
+                startActivity(orderHistoryIntent);
                 break;
             case R.id.nav_logout:
                 logout();

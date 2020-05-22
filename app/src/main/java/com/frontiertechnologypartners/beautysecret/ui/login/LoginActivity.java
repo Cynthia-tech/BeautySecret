@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.admin.AdminAddNewProductActivity;
+import com.frontiertechnologypartners.beautysecret.ui.admin.AdminHomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.ui.home.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
@@ -108,7 +109,7 @@ public class LoginActivity extends BaseActivity {
 
                                     Paper.book().write(IS_FIRST_TIME_LUNCH, false);
                                     Paper.book().write(IS_ADMIN_LOGIN, true);
-                                    Intent intent = new Intent(LoginActivity.this, AdminAddNewProductActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {

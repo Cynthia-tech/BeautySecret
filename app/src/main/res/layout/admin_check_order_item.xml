@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/cart_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_order_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_order_ph_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_order_total_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_order_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_order_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/show_order_products_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/order_btn_bg"
+        android:text="@string/show_order_products"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+</LinearLayout>

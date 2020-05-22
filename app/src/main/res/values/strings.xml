@@ -166,4 +166,15 @@
     <string name="product_detail">Product Detail</string>
     <string name="no_cart">No Cart</string>
     <string name="next">Next</string>
+    <string name="please_write_your_shipment_details">Please write your shipment details</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="confirm">Confirm</string>
+    <string name="add_new_products">add new products</string>
+    <string name="check_orders">check orders</string>
+    <string name="no_orders">No Orders</string>
+    <string name="show_order_products">show order products</string>
+    <string name="order_products">Order Products</string>
+    <string name="approve_order">Approve Order</string>
 </resources>

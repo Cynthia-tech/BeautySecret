@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,23 +15,14 @@ import android.widget.Toast;
 
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.home.AdminCategoryActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -145,7 +135,7 @@ public class AdminAddNewProductActivity extends BaseActivity {
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("productName", productName);
         productMap.put("productColor", productColor);
-        productMap.put("productPrice", "$" + productPrice);
+        productMap.put("productPrice", productPrice);
         productMap.put("image", downloadImageUri);
         String keyId = dbRef.push().getKey();
         dbRef.child(PRODUCTS).child(brandName).child(productCategoryName).child(productSubCategoryName).child(keyId).setValue(productMap)

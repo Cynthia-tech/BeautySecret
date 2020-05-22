@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.user.UserOrderHistoryActivity"
-            android:label="@string/orders" />
+        <activity android:name=".ui.user.UserOrderHistoryActivity"></activity>
         <activity
             android:name=".ui.admin.AdminOrderProductsActivity"
             android:label="@string/order_products" />

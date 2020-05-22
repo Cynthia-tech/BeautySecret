@@ -10,10 +10,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.frontiertechnologypartners.beautysecret.model.Cart;
 import com.frontiertechnologypartners.beautysecret.model.Product;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
+import com.frontiertechnologypartners.beautysecret.ui.order.FinalConfirmOrderActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
 import com.frontiertechnologypartners.beautysecret.widget.GridSpacingItemDecoration;
 import com.google.firebase.database.DataSnapshot;
@@ -32,12 +36,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN_VIEW;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.CART_LIST;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS;
+import static com.frontiertechnologypartners.beautysecret.util.Constant.TOTAL_PRICE;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.USER_VIEW;
 
 public class CartActivity extends BaseActivity implements OnRecyclerItemClickListener, OnRecyclerMultiItemClickListener {
@@ -47,9 +54,16 @@ public class CartActivity extends BaseActivity implements OnRecyclerItemClickLis
     @BindView(R.id.tv_no_cart)
     TextView tvNoCart;
 
+    @BindView(R.id.tv_pd_total_price)
+    TextView tvTotalPrice;
+
+    @BindView(R.id.btn_next)
+    Button btnNext;
+
     private CartAdapter cartAdapter;
     private List<Cart> cartList;
     private Users userData;
+    private double totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +84,20 @@ public class CartActivity extends BaseActivity implements OnRecyclerItemClickLis
         userData = Paper.book().read(LOGIN_USER_DATA);
 
         retrieveCartList();
+
+        btnNext.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, FinalConfirmOrderActivity.class);
+            intent.putExtra(TOTAL_PRICE, String.valueOf(totalPrice));
+            intent.putExtra(CART_LIST, (Serializable) cartList);
+            startActivity(intent);
+        });
     }
 
     private void retrieveCartList() {
         if (Util.isNetworkAvailable(getApplicationContext())) {
             cartList = new ArrayList<>();
             loadingBar.show();
-            dbRef.child(CART_LIST).child(USER_VIEW).child(userData.getName())
+            dbRef.child(CART_LIST).child(userData.getName())
                     .child(PRODUCTS).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,15 +105,25 @@ public class CartActivity extends BaseActivity implements OnRecyclerItemClickLis
                     if (dataSnapshot.exists()) {
                         cartList.clear();
                         cartAdapter.clear();
+                        totalPrice = 0;
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             Cart cart = dataSnapshot1.getValue(Cart.class);
                             cart.setPid(dataSnapshot1.getKey());
                             cartList.add(cart);
-                            cartAdapter.setItems(cartList);
+
+                            double price = Double.parseDouble(cart.getPrice());
+                            int qty = Integer.parseInt(cart.getQuantity());
+                            totalPrice += (price * qty);
                         }
+                        cartAdapter.setItems(cartList);
+                        tvTotalPrice.setText("Total Price = $ " + totalPrice);
                         tvNoCart.setVisibility(View.GONE);
+                        btnNext.setVisibility(View.VISIBLE);
+                        tvTotalPrice.setVisibility(View.VISIBLE);
                     } else {
                         tvNoCart.setVisibility(View.VISIBLE);
+                        btnNext.setVisibility(View.GONE);
+                        tvTotalPrice.setVisibility(View.GONE);
                     }
 
                 }
@@ -127,11 +158,11 @@ public class CartActivity extends BaseActivity implements OnRecyclerItemClickLis
     }
 
     @Override
-    public void onDeleteItemClick(int position) {
+    public void onClickAction(int position) {
         Cart cart = cartAdapter.getItem(position);
         //login data
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference();
-        cartListRef.child(CART_LIST).child(USER_VIEW).child(userData.getName())
+        cartListRef.child(CART_LIST).child(userData.getName())
                 .child(PRODUCTS).child(cart.getPid()).removeValue()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

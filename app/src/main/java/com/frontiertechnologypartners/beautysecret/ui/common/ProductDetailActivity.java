@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN_VIEW;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.BRAND_NAME;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.CART_LIST;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
@@ -74,7 +75,7 @@ public class ProductDetailActivity extends BaseActivity {
         if (product != null) {
             tvProductNameDetail.setText(product.getProductName());
             tvProductColorDetail.setText(product.getProductColor());
-            tvProductPriceDetail.setText(product.getProductPrice());
+            tvProductPriceDetail.setText("$ " + product.getProductPrice());
             Glide.with(this)
                     .load(product.getImage())
                     .centerCrop()
@@ -98,16 +99,15 @@ public class ProductDetailActivity extends BaseActivity {
         Users userData = Paper.book().read(LOGIN_USER_DATA);
 
         final HashMap<String, Object> cartMap = new HashMap<>();
-        cartMap.put("pid", keyId);
         cartMap.put("pname", tvProductNameDetail.getText().toString());
-        cartMap.put("price", tvProductPriceDetail.getText().toString());
+        cartMap.put("price", product.getProductPrice());
         cartMap.put("color", tvProductColorDetail.getText().toString());
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
-        cartMap.put("discount", "");
+//        String productRandomKey = saveCurrentDate + saveCurrentTime;
 
-        dbRef.child(CART_LIST).child(USER_VIEW).child(userData.getName())
+        dbRef.child(CART_LIST).child(userData.getName())
                 .child(PRODUCTS).child(keyId)
                 .updateChildren(cartMap)
                 .addOnCompleteListener(task -> {
@@ -118,6 +118,19 @@ public class ProductDetailActivity extends BaseActivity {
                         intent.putExtra(PRODUCT_TYPE, productType);
                         startActivity(intent);
                         finish();
+//                        dbRef.child(CART_LIST).child(userData.getName())
+//                                .child(PRODUCTS).child(keyId)
+//                                .updateChildren(cartMap)
+//                                .addOnCompleteListener(task1 -> {
+//                                    if (task1.isSuccessful()) {
+//                                        Toast.makeText(ProductDetailActivity.this, "Added to Cart List.", Toast.LENGTH_SHORT).show();
+//
+//                                        Intent intent = new Intent(ProductDetailActivity.this, ProductsActivity.class);
+//                                        intent.putExtra(PRODUCT_TYPE, productType);
+//                                        startActivity(intent);
+//                                        finish();
+//                                    }
+//                                });
                     }
                 });
     }
