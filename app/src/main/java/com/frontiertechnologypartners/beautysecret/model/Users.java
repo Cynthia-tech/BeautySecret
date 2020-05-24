@@ -1,17 +1,26 @@
 package com.frontiertechnologypartners.beautysecret.model;
 
 public class Users {
-    private String name, phone, password, image, address;
+    private String name, phone, password, image, address, loginType;
 
     public Users() {
     }
 
-    public Users(String name, String phone, String password, String image, String address) {
+    public Users(String name, String phone, String password, String image, String address, String loginType) {
         this.name = name;
         this.phone = phone;
         this.password = password;
         this.image = image;
         this.address = address;
+        this.loginType = loginType;
+    }
+
+    public String getLoginType() {
+        return loginType;
+    }
+
+    public void setLoginType(String loginType) {
+        this.loginType = loginType;
     }
 
     public String getName() {

@@ -1,25 +1,17 @@
-package com.frontiertechnologypartners.beautysecret.ui.home;
+package com.frontiertechnologypartners.beautysecret.ui.user;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 
 import com.bumptech.glide.Glide;
 import com.frontiertechnologypartners.beautysecret.MainActivity;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Users;
-import com.frontiertechnologypartners.beautysecret.ui.admin.AdminAddNewProductActivity;
-import com.frontiertechnologypartners.beautysecret.ui.admin.GalleryFragment;
-import com.frontiertechnologypartners.beautysecret.ui.admin.SlideshowFragment;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.ui.cart.CartActivity;
-import com.frontiertechnologypartners.beautysecret.ui.login.LoginActivity;
-import com.frontiertechnologypartners.beautysecret.ui.user.UserOrderHistoryActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.frontiertechnologypartners.beautysecret.ui.common.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -27,11 +19,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,22 +39,12 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
-    private NavController navController;
-    private AppBarConfiguration mAppBarConfiguration;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-//        cart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

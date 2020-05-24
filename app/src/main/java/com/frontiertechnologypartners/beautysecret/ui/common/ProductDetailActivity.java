@@ -1,7 +1,5 @@
 package com.frontiertechnologypartners.beautysecret.ui.common;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,23 +18,16 @@ import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Product;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.home.HomeActivity;
-import com.frontiertechnologypartners.beautysecret.ui.maybelline.MaybellineFaceCosmeticActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN_VIEW;
-import static com.frontiertechnologypartners.beautysecret.util.Constant.BRAND_NAME;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.CART_LIST;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCT;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCT_TYPE;
-import static com.frontiertechnologypartners.beautysecret.util.Constant.USER_VIEW;
 
 public class ProductDetailActivity extends BaseActivity {
     @BindView(R.id.product_image_details)

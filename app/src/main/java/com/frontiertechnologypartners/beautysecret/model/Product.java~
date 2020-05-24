@@ -3,24 +3,15 @@ package com.frontiertechnologypartners.beautysecret.model;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    private String productName,productColor,productPrice,image,productId;
+    private String productName,productColor,productPrice,image;
     public Product() {
     }
 
-    public Product(String productName, String productColor, String productPrice, String image, String productId) {
+    public Product(String productName, String productColor, String productPrice, String image) {
         this.productName = productName;
         this.productColor = productColor;
         this.productPrice = productPrice;
         this.image = image;
-        this.productId = productId;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
     }
 
     public String getProductName() {

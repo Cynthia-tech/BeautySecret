@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -114,7 +113,7 @@ public class RegisterActivity extends BaseActivity {
                         downloadImageUri = uri.toString();
                         saveRegisterData();
                     })).addOnFailureListener(e -> loadingBar.dismiss());
-        }else {
+        } else {
             saveRegisterData();
         }
     }
@@ -125,6 +124,7 @@ public class RegisterActivity extends BaseActivity {
         userdataMap.put("phone", phone);
         userdataMap.put("password", password);
         userdataMap.put("image", downloadImageUri);
+        userdataMap.put("loginType", "user");
 
         dbRef.child(USER).child(name).updateChildren(userdataMap)
                 .addOnCompleteListener(task -> {

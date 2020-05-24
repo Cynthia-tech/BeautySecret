@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.home;
+package com.frontiertechnologypartners.beautysecret.ui.user;
 
 import android.view.View;
 import android.widget.TextView;

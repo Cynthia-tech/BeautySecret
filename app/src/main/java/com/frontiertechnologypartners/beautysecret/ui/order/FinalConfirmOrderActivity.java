@@ -12,13 +12,7 @@ import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Cart;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.common.ProductDetailActivity;
-import com.frontiertechnologypartners.beautysecret.ui.common.ProductsActivity;
-import com.frontiertechnologypartners.beautysecret.ui.home.HomeActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.frontiertechnologypartners.beautysecret.ui.user.HomeActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,13 +20,11 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.paperdb.Paper;
 
-import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN_ORDERS;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.CART_LIST;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.ORDERS;

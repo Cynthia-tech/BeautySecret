@@ -6,10 +6,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.frontiertechnologypartners.beautysecret.ui.admin.AdminAddNewProductActivity;
 import com.frontiertechnologypartners.beautysecret.ui.admin.AdminHomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.home.HomeActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.login.LoginActivity;
 import com.frontiertechnologypartners.beautysecret.ui.register.RegisterActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;

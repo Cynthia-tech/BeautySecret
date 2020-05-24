@@ -128,20 +128,29 @@ public class AdminAddNewProductActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
-            imageUri = data.getData();
+
             try {
+                imageUri = data.getData();
                 String imagePath = Util.getPathFromURI(this, imageUri);
+
+
+//                compressedImageFile = new Compressor(this).compressToFile(new File(imageUri.getPath()));
                 compressedImageFile = new Compressor(this)
                         .setMaxWidth(640)
                         .setMaxHeight(480)
                         .setQuality(75)
                         .setCompressFormat(Bitmap.CompressFormat.WEBP)
                         .compressToFile(new File(imagePath));
+                Log.e("compress image", compressedImageFile + "");
+                Log.e("compress image size", Util.getReadableFileSize(compressedImageFile.length()) + "");
+                Log.e("compress autual size", Util.getReadableFileSize(imageUri.getPath().length()) + "");
 
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.e("compress image error", e.getMessage());
             }
-            imgProduct.setImageURI(imageUri);
+//            imgProduct.setImageURI(imageUri);
+            imgProduct.setImageURI(Uri.fromFile(compressedImageFile));
         }
     }
 
@@ -154,25 +163,25 @@ public class AdminAddNewProductActivity extends BaseActivity {
         productCategoryName = categoryNameSpinner.getSelectedItem().toString();
         productSubCategoryName = subCategoryNameSpinner.getSelectedItem().toString();
 
-        if (imageUri == null) {
-            Toast.makeText(this, R.string.require_image, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productName)) {
-            etProductName.setError(getString(R.string.require_product_name));
-            Toast.makeText(this, R.string.require_product_name, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productColor)) {
-            etProductColor.setError(getString(R.string.require_product_color));
-            Toast.makeText(this, R.string.require_product_color, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productPrice)) {
-            etProductPrice.setError(getString(R.string.require_product_price));
-            Toast.makeText(this, R.string.require_product_price, Toast.LENGTH_SHORT).show();
-        } else {
-            if (Util.isNetworkAvailable(getApplicationContext())) {
-                loadingBar.show();
-                storeProductInformation();
-            } else {
-                Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-            }
-        }
+//        if (imageUri == null) {
+//            Toast.makeText(this, R.string.require_image, Toast.LENGTH_SHORT).show();
+//        } else if (TextUtils.isEmpty(productName)) {
+//            etProductName.setError(getString(R.string.require_product_name));
+//            Toast.makeText(this, R.string.require_product_name, Toast.LENGTH_SHORT).show();
+//        } else if (TextUtils.isEmpty(productColor)) {
+//            etProductColor.setError(getString(R.string.require_product_color));
+//            Toast.makeText(this, R.string.require_product_color, Toast.LENGTH_SHORT).show();
+//        } else if (TextUtils.isEmpty(productPrice)) {
+//            etProductPrice.setError(getString(R.string.require_product_price));
+//            Toast.makeText(this, R.string.require_product_price, Toast.LENGTH_SHORT).show();
+//        } else {
+//            if (Util.isNetworkAvailable(getApplicationContext())) {
+//                loadingBar.show();
+//                storeProductInformation();
+//            } else {
+//                Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
     }
 

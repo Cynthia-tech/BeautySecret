@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.user.UserOrderHistoryActivity"></activity>
+        <activity android:name=".ui.admin.ManageProductsActivity"></activity>
+        <activity
+            android:name=".ui.admin.AdminMaintainProductActivity"
+            android:label="Maintain Products" />
+        <activity
+            android:name=".ui.user.UserOrderHistoryActivity"
+            android:label="@string/orders" />
         <activity
             android:name=".ui.admin.AdminOrderProductsActivity"
             android:label="@string/order_products" />
@@ -60,7 +66,7 @@
             android:name=".ui.common.BrandCategoryActivity"
             android:label="" />
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.user.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.admin.AdminAddNewProductActivity" />

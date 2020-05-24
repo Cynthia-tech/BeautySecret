@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@color/md_white_1000"
         app:srcCompat="@drawable/nav_cart" />

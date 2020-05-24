@@ -61,4 +61,8 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
     //elegant number button
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    //compress image
+    implementation 'id.zelory:compressor:2.1.0'
+    //Dexter runtime permissions
+    implementation 'com.karumi:dexter:5.0.0'
 }

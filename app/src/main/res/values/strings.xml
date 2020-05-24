@@ -177,4 +177,7 @@
     <string name="show_order_products">show order products</string>
     <string name="order_products">Order Products</string>
     <string name="approve_order">Approve Order</string>
+    <string name="maintain_products">Maintain Products</string>
+    <string name="update_product">update product</string>
+    <string name="delete_product">delete product</string>
 </resources>

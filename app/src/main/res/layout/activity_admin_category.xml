@@ -20,6 +20,18 @@
         android:textSize="18sp" />
 
     <Button
+        android:id="@+id/admin_maintain_product_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/buttons_bg"
+        android:text="@string/maintain_products"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
         android:id="@+id/admin_check_orders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +40,18 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/buttons_bg"
         android:text="@string/check_orders"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/admin_logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/buttons_bg"
+        android:text="@string/logout"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 </LinearLayout>

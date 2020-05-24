@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.home;
+package com.frontiertechnologypartners.beautysecret.ui.common;
 
 import android.content.Intent;
 import android.os.Bundle;

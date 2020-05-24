@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.paperdb.Paper;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerItemClickListener;
 import com.frontiertechnologypartners.beautysecret.model.Product;
+import com.frontiertechnologypartners.beautysecret.model.Users;
+import com.frontiertechnologypartners.beautysecret.ui.admin.ManageProductsActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.ui.cart.CartActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.BRAND_NAME;
+import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOREAL_BRANDS;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCT;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS;
@@ -43,10 +47,14 @@ public class ProductsActivity extends BaseActivity implements OnRecyclerItemClic
     @BindView(R.id.tv_no_product)
     TextView tvNoProduct;
 
+    @BindView(R.id.fab_cart)
+    FloatingActionButton fabCart;
+
     private List<Product> products;
     private String brand, brandCategory, product;
     private ProductsAdapter productsAdapter;
     private int productType;
+    private Users userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,14 @@ public class ProductsActivity extends BaseActivity implements OnRecyclerItemClic
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        //login data
+        userData = Paper.book().read(LOGIN_USER_DATA);
+        if (userData.getLoginType().equals("user")) {
+            fabCart.setVisibility(View.VISIBLE);
+        } else {
+            fabCart.setVisibility(View.GONE);
+        }
 
         //init rv
         rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
@@ -346,12 +362,21 @@ public class ProductsActivity extends BaseActivity implements OnRecyclerItemClic
     @Override
     public void onItemClick(int position) {
         Product product = productsAdapter.getItem(position);
-        Intent productDetailIntent = new Intent(ProductsActivity.this, ProductDetailActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(PRODUCT, product);
-        bundle.putInt(PRODUCT_TYPE, productType);
-        productDetailIntent.putExtras(bundle);
-        startActivity(productDetailIntent);
-        finish();
+        if (userData.getLoginType().equals("user")) {
+            Intent productDetailIntent = new Intent(ProductsActivity.this, ProductDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(PRODUCT, product);
+            bundle.putInt(PRODUCT_TYPE, productType);
+            productDetailIntent.putExtras(bundle);
+            startActivity(productDetailIntent);
+            finish();
+        } else {
+            Intent productManageIntent = new Intent(ProductsActivity.this, ManageProductsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(PRODUCT, product);
+            bundle.putInt(PRODUCT_TYPE, productType);
+            productManageIntent.putExtras(bundle);
+            startActivity(productManageIntent);
+        }
     }
 }
