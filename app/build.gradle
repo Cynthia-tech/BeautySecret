@@ -65,4 +65,6 @@ dependencies {
     implementation 'id.zelory:compressor:2.1.0'
     //Dexter runtime permissions
     implementation 'com.karumi:dexter:5.0.0'
+    //fingerprint
+    implementation 'androidx.biometric:biometric:1.0.1'
 }

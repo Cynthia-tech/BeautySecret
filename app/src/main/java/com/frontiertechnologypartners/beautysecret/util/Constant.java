@@ -17,6 +17,7 @@ public class Constant {
     public static final int GALLERY_IMAGE_PICK = 1;
     public static final String PRODUCTS = "Products";
     public static final String LOGIN_USER_DATA = "LOGIN_USER_DATA";
+    public static final String FINGER_PRINT_LOGIN = "FINGER_PRINT_LOGIN";
     public static final String MAYBELLINE_BRANDS = "MABELLINE BRANDS";
     public static final String LOREAL_BRANDS = "L'OREAL BRANDS";
     public static final String REVLON_BRANDS = "REVLON BRANDS";

@@ -6,11 +6,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.frontiertechnologypartners.beautysecret.MainActivity;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.admin.AdminHomeActivity;
@@ -21,11 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.concurrent.Executor;
-
 import androidx.annotation.NonNull;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,7 +33,7 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_US
 import static com.frontiertechnologypartners.beautysecret.util.Constant.USER;
 
 
-public class LoginActivity extends BaseActivity {
+public class FingerPrintLoginActivity extends BaseActivity {
 
     @BindView(R.id.et_user_name)
     EditText etUserName;
@@ -56,16 +50,13 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.btn_login)
     Button btnLogin;
 
-    @BindView(R.id.iv_finger_print_login)
-    ImageView fingerPrintLogin;
-
     private String name, password;
     private String parentDbName = USER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_finger_print);
         ButterKnife.bind(this);
         // making notification bar transparent
         Util.changeStatusBarColor(this);
@@ -81,14 +72,6 @@ public class LoginActivity extends BaseActivity {
             tvAdminPanelLink.setVisibility(View.INVISIBLE);
             tvNotAdminPanelLink.setVisibility(View.VISIBLE);
             parentDbName = ADMIN;
-        });
-        fingerPrintLogin.setOnClickListener(v -> {
-            boolean firstTimeFingerPrintLogin = Paper.book().read(FINGER_PRINT_LOGIN, false);
-            if (firstTimeFingerPrintLogin) {
-                showFingerPrintDialog();
-            } else {
-                startActivity(new Intent(LoginActivity.this, FingerPrintLoginActivity.class));
-            }
         });
     }
 
@@ -121,35 +104,37 @@ public class LoginActivity extends BaseActivity {
                         if (usersData.getName().equals(name)) {
                             if (usersData.getPassword().equals(password)) {
                                 if (parentDbName.equals(ADMIN)) {
-                                    Toast.makeText(LoginActivity.this, "Welcome Admin, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FingerPrintLoginActivity.this, "Welcome Admin, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
 
                                     Paper.book().write(IS_FIRST_TIME_LUNCH, false);
                                     Paper.book().write(IS_ADMIN_LOGIN, true);
                                     Paper.book().write(LOGIN_USER_DATA, usersData);
-                                    Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                    Paper.book().write(FINGER_PRINT_LOGIN, true);
+                                    Intent intent = new Intent(FingerPrintLoginActivity.this, AdminHomeActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Toast.makeText(LoginActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FingerPrintLoginActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
 
                                     Paper.book().write(IS_FIRST_TIME_LUNCH, false);
                                     Paper.book().write(IS_ADMIN_LOGIN, false);
                                     Paper.book().write(LOGIN_USER_DATA, usersData);
-                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    Paper.book().write(FINGER_PRINT_LOGIN, true);
+                                    Intent intent = new Intent(FingerPrintLoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
 
                             } else {
                                 loadingBar.dismiss();
-                                Toast.makeText(LoginActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FingerPrintLoginActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Username is invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FingerPrintLoginActivity.this, "Username is invalid", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }
@@ -159,56 +144,5 @@ public class LoginActivity extends BaseActivity {
                 loadingBar.dismiss();
             }
         });
-    }
-
-    private void showFingerPrintDialog() {
-        Executor executor = ContextCompat.getMainExecutor(this);
-        BiometricPrompt biometricPrompt = new BiometricPrompt(LoginActivity.this,
-                executor, new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode,
-                                              @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-//                Toast.makeText(getApplicationContext(),
-//                        "Authentication error: " + errString, Toast.LENGTH_SHORT)
-//                        .show();
-            }
-
-            @Override
-            public void onAuthenticationSucceeded(
-                    @NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                Toast.makeText(getApplicationContext(),
-                        "Login successfully", Toast.LENGTH_SHORT).show();
-                //login data
-                Users userData = Paper.book().read(LOGIN_USER_DATA);
-                if (userData.getLoginType().equals("admin")) {
-                    Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-//                Toast.makeText(getApplicationContext(), "Authentication failed",
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-            }
-        });
-
-        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Fingerprint Login")
-                .setNegativeButtonText("Cancel")
-                .build();
-
-        biometricPrompt.authenticate(promptInfo);
-
-
     }
 }

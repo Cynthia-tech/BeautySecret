@@ -33,11 +33,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean isFirstTimeLunch = Paper.book().read(IS_FIRST_TIME_LUNCH, true);
-        if (!isFirstTimeLunch) {
-            lunchHomeScreen();
-            finish();
-        }
+//        boolean isFirstTimeLunch = Paper.book().read(IS_FIRST_TIME_LUNCH, true);
+//        if (!isFirstTimeLunch) {
+//            lunchHomeScreen();
+//            finish();
+//        }
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);

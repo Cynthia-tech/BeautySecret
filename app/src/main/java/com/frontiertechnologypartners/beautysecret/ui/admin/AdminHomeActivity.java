@@ -46,4 +46,9 @@ public class AdminHomeActivity extends BaseActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 }
