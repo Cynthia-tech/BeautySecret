@@ -181,4 +181,5 @@
     <string name="update_product">update product</string>
     <string name="delete_product">delete product</string>
     <string name="finger_print_login_msg">To access fingerprint authentication, you need to first time account login</string>
+    <string name="order_shipped">Order Shipped</string>
 </resources>

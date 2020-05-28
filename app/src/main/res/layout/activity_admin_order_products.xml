@@ -20,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:background="@drawable/buttons_bg"
-        android:text="@string/approve_order"
+        android:text="@string/order_shipped"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 

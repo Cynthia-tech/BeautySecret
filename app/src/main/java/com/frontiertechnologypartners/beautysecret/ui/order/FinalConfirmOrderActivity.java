@@ -97,7 +97,7 @@ public class FinalConfirmOrderActivity extends BaseActivity {
         ordersMap.put("date", saveCurrentDate);
         ordersMap.put("time", saveCurrentTime);
         ordersMap.put("state", "not shipped");
-        ordersMap.put("order user", userData.getName());
+        ordersMap.put("orderUser", userData.getName());
         ordersMap.put("orderId", keyId);
 
         dbRef.child(ORDERS).child(userData.getName()).child(keyId).updateChildren(ordersMap).addOnCompleteListener(task -> {
