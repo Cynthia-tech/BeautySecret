@@ -13,6 +13,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -45,26 +46,10 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.GALLERY_
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS;
 
 public class AdminAddNewProductActivity extends BaseActivity {
-    @BindView(R.id.spinner_brand_name)
-    Spinner brandNameSpinner;
-
-    @BindView(R.id.spinner_category_name)
-    Spinner categoryNameSpinner;
-
-    @BindView(R.id.spinner_sub_category_name)
-    Spinner subCategoryNameSpinner;
-
-    @BindView(R.id.img_product)
-    ImageView imgProduct;
-
-    @BindView(R.id.et_product_name)
-    TextInputEditText etProductName;
-
-    @BindView(R.id.et_product_color)
-    TextInputEditText etProductColor;
-
-    @BindView(R.id.et_product_price)
-    TextInputEditText etProductPrice;
+    private Spinner brandNameSpinner, categoryNameSpinner, subCategoryNameSpinner;
+    private TextInputEditText etProductName, etProductColor, etProductPrice;
+    private ImageView imgProduct;
+    private Button btnAddNewProduct;
 
     private String brandName, productCategoryName, productSubCategoryName;
     private Uri imageUri;
@@ -75,7 +60,7 @@ public class AdminAddNewProductActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_product);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -83,12 +68,46 @@ public class AdminAddNewProductActivity extends BaseActivity {
         //brand name spinner
         brandNameSpinner();
 
-        imgProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseImageFromGallery();
+        imgProduct.setOnClickListener(v -> chooseImageFromGallery());
+        btnAddNewProduct.setOnClickListener(v -> {
+            productName = etProductName.getText().toString();
+            productColor = etProductColor.getText().toString();
+            productPrice = etProductPrice.getText().toString();
+            brandName = brandNameSpinner.getSelectedItem().toString();
+            productCategoryName = categoryNameSpinner.getSelectedItem().toString();
+            productSubCategoryName = subCategoryNameSpinner.getSelectedItem().toString();
+
+            if (imageUri == null) {
+                Toast.makeText(AdminAddNewProductActivity.this, R.string.require_image, Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(productName)) {
+                etProductName.setError(getString(R.string.require_product_name));
+                Toast.makeText(AdminAddNewProductActivity.this, R.string.require_product_name, Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(productColor)) {
+                etProductColor.setError(getString(R.string.require_product_color));
+                Toast.makeText(AdminAddNewProductActivity.this, R.string.require_product_color, Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(productPrice)) {
+                etProductPrice.setError(getString(R.string.require_product_price));
+                Toast.makeText(AdminAddNewProductActivity.this, R.string.require_product_price, Toast.LENGTH_SHORT).show();
+            } else {
+                if (Util.isNetworkAvailable(getApplicationContext())) {
+                    loadingBar.show();
+                    storeProductInformation();
+                } else {
+                    Toast.makeText(AdminAddNewProductActivity.this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    private void init() {
+        brandNameSpinner = findViewById(R.id.spinner_brand_name);
+        categoryNameSpinner = findViewById(R.id.spinner_category_name);
+        subCategoryNameSpinner = findViewById(R.id.spinner_sub_category_name);
+        etProductName = findViewById(R.id.et_product_name);
+        etProductColor = findViewById(R.id.et_product_color);
+        etProductPrice = findViewById(R.id.et_product_price);
+        imgProduct = findViewById(R.id.img_product);
+        btnAddNewProduct = findViewById(R.id.btn_add_product);
     }
 
     private void chooseImageFromGallery() {
@@ -143,37 +162,6 @@ public class AdminAddNewProductActivity extends BaseActivity {
             }
             imgProduct.setImageURI(imageUri);
         }
-    }
-
-    @OnClick(R.id.btn_add_product)
-    void addNewProduct() {
-        productName = etProductName.getText().toString();
-        productColor = etProductColor.getText().toString();
-        productPrice = etProductPrice.getText().toString();
-        brandName = brandNameSpinner.getSelectedItem().toString();
-        productCategoryName = categoryNameSpinner.getSelectedItem().toString();
-        productSubCategoryName = subCategoryNameSpinner.getSelectedItem().toString();
-
-        if (imageUri == null) {
-            Toast.makeText(this, R.string.require_image, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productName)) {
-            etProductName.setError(getString(R.string.require_product_name));
-            Toast.makeText(this, R.string.require_product_name, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productColor)) {
-            etProductColor.setError(getString(R.string.require_product_color));
-            Toast.makeText(this, R.string.require_product_color, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productPrice)) {
-            etProductPrice.setError(getString(R.string.require_product_price));
-            Toast.makeText(this, R.string.require_product_price, Toast.LENGTH_SHORT).show();
-        } else {
-            if (Util.isNetworkAvailable(getApplicationContext())) {
-                loadingBar.show();
-                storeProductInformation();
-            } else {
-                Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-            }
-        }
-
     }
 
     private void storeProductInformation() {

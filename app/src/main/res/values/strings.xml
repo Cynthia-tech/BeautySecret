@@ -5,7 +5,7 @@
     <string name="register">Register</string>
     <string name="join_now">join now</string>
     <string name="beauty_secret">Beauty Secret</string>
-    <string name="for_ladies">For Ladies</string>
+    <string name="for_ladies"><i>For Ladies</i></string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>

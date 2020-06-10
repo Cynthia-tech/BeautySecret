@@ -249,7 +249,7 @@ public class ProductsActivity extends BaseActivity implements OnRecyclerItemClic
             case 28:
                 brand = getResources().getString(R.string.revlon);
                 brandCategory = getResources().getString(R.string.eye_consmetic_title);
-                product = getResources().getString(R.string.photoready_cheek_flushing_tint);
+                product = getResources().getString(R.string.revlon_volumazing_mascara);
                 retrieveProducts();
                 break;
             case 29:

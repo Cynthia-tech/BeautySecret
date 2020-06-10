@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.frontiertechnologypartners.beautysecret.ui.admin.AdminHomeActivity;
@@ -27,11 +29,9 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_ADMIN
 import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_FIRST_TIME_LUNCH;
 
 public class MainActivity extends BaseActivity {
-    @BindView(R.id.tv_app_title)
-    SyncTextPathView tvTitle;
-
-    @BindView(R.id.tv_for_ladies)
-    TextView tvForLadies;
+    private SyncTextPathView tvTitle;
+    private TextView tvForLadies;
+    private Button btnJoinNow, btnAlreadyLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
 //        }
 
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        init();
 
         // making notification bar transparent
         Util.changeStatusBarColor(this);
@@ -55,6 +55,24 @@ public class MainActivity extends BaseActivity {
 
         Animation shakeAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         tvForLadies.startAnimation(shakeAnimation);
+        tvForLadies.setText(getText(R.string.for_ladies));
+
+        btnJoinNow.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+
+        btnAlreadyLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void init() {
+        tvTitle = findViewById(R.id.tv_app_title);
+        tvForLadies = findViewById(R.id.tv_for_ladies);
+        btnJoinNow = findViewById(R.id.btn_join_now);
+        btnAlreadyLogin = findViewById(R.id.btn_login);
     }
 
     private void lunchHomeScreen() {
@@ -67,18 +85,5 @@ public class MainActivity extends BaseActivity {
             finish();
         }
 
-    }
-
-
-    @OnClick(R.id.btn_login)
-    void accountLoginPage() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.btn_join_now)
-    void accountCreatePage() {
-        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-        startActivity(intent);
     }
 }

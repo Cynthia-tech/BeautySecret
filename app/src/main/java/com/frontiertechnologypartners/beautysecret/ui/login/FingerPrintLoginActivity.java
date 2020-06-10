@@ -20,9 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.paperdb.Paper;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN;
@@ -34,21 +31,9 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.USER;
 
 
 public class FingerPrintLoginActivity extends BaseActivity {
-
-    @BindView(R.id.et_user_name)
-    EditText etUserName;
-
-    @BindView(R.id.et_password)
-    EditText etPassword;
-
-    @BindView(R.id.tv_not_admin_panel_link)
-    TextView tvNotAdminPanelLink;
-
-    @BindView(R.id.admin_panel_link)
-    TextView tvAdminPanelLink;
-
-    @BindView(R.id.btn_login)
-    Button btnLogin;
+    private EditText etUserName, etPassword;
+    private TextView tvNotAdminPanelLink, tvAdminPanelLink;
+    private Button btnLogin;
 
     private String name, password;
     private String parentDbName = USER;
@@ -57,7 +42,7 @@ public class FingerPrintLoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_finger_print);
-        ButterKnife.bind(this);
+        init();
         // making notification bar transparent
         Util.changeStatusBarColor(this);
 
@@ -73,25 +58,31 @@ public class FingerPrintLoginActivity extends BaseActivity {
             tvNotAdminPanelLink.setVisibility(View.VISIBLE);
             parentDbName = ADMIN;
         });
+        btnLogin.setOnClickListener(v -> {
+            name = etUserName.getText().toString();
+            password = etPassword.getText().toString();
+
+            if (TextUtils.isEmpty(name)) {
+                etUserName.setError(getString(R.string.require_name));
+            } else if (TextUtils.isEmpty(password)) {
+                etPassword.setError(getString(R.string.require_password));
+            } else {
+                if (Util.isNetworkAvailable(getApplicationContext())) {
+                    loadingBar.show();
+                    allowAccessToAccount();
+                } else {
+                    Toast.makeText(FingerPrintLoginActivity.this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
-    @OnClick(R.id.btn_login)
-    void login() {
-        name = etUserName.getText().toString();
-        password = etPassword.getText().toString();
-
-        if (TextUtils.isEmpty(name)) {
-            etUserName.setError(getString(R.string.require_name));
-        } else if (TextUtils.isEmpty(password)) {
-            etPassword.setError(getString(R.string.require_password));
-        } else {
-            if (Util.isNetworkAvailable(getApplicationContext())) {
-                loadingBar.show();
-                allowAccessToAccount();
-            } else {
-                Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-            }
-        }
+    private void init() {
+        etUserName = findViewById(R.id.et_user_name);
+        etPassword = findViewById(R.id.et_password);
+        tvNotAdminPanelLink = findViewById(R.id.tv_not_admin_panel_link);
+        tvAdminPanelLink = findViewById(R.id.admin_panel_link);
+        btnLogin = findViewById(R.id.btn_login);
     }
 
     private void allowAccessToAccount() {
