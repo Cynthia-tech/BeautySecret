@@ -1,8 +1,7 @@
-package com.frontiertechnologypartners.beautysecret.ui.admin;
+package com.frontiertechnologypartners.beautysecret.ui.admin.check_order;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -10,7 +9,6 @@ import android.widget.Toast;
 
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerMultiItemClickListener;
-import com.frontiertechnologypartners.beautysecret.model.Cart;
 import com.frontiertechnologypartners.beautysecret.model.Order;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
@@ -26,8 +24,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.NOT_SHIPPED;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.ORDERS;
@@ -35,11 +31,8 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.ORDER_KE
 import static com.frontiertechnologypartners.beautysecret.util.Constant.ORDER_USER;
 
 public class AdminCheckOrdersActivity extends BaseActivity implements OnRecyclerMultiItemClickListener {
-    @BindView(R.id.rv_orders)
-    RecyclerView ordersRv;
-
-    @BindView(R.id.tv_no_orders)
-    TextView tvNoOrders;
+    private RecyclerView ordersRv;
+    private TextView tvNoOrders;
 
     private OrderAdapter orderAdapter;
     private List<Order> orderList;
@@ -48,7 +41,7 @@ public class AdminCheckOrdersActivity extends BaseActivity implements OnRecycler
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_check_orders_actiivity);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -61,6 +54,11 @@ public class AdminCheckOrdersActivity extends BaseActivity implements OnRecycler
 
         showOrders();
 
+    }
+
+    private void init() {
+        ordersRv = findViewById(R.id.rv_orders);
+        tvNoOrders = findViewById(R.id.tv_no_orders);
     }
 
     private void showOrders() {

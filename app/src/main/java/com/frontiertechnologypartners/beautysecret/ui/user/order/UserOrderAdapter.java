@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.user;
+package com.frontiertechnologypartners.beautysecret.ui.user.order;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerMultiItemClickListener;
 import com.frontiertechnologypartners.beautysecret.model.Order;
-import com.frontiertechnologypartners.beautysecret.ui.admin.OrderViewHolder;
 import com.frontiertechnologypartners.beautysecret.ui.base.GenericRecyclerViewAdapter;
 
 import androidx.annotation.NonNull;

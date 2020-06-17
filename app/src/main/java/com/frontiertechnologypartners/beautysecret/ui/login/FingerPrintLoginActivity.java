@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Users;
-import com.frontiertechnologypartners.beautysecret.ui.admin.AdminHomeActivity;
+import com.frontiertechnologypartners.beautysecret.ui.admin.admin_home.AdminHomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.user.HomeActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.home.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

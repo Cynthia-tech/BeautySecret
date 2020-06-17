@@ -13,8 +13,6 @@ import com.frontiertechnologypartners.beautysecret.ui.common.BrandCategoryActivi
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.BRAND_NAME;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOREAL_BRANDS;
@@ -23,15 +21,7 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.REVLON_B
 
 
 public class HomeFragment extends BaseFragment {
-    @BindView(R.id.maybelline_layout)
-    RelativeLayout maybellineLayout;
-
-    @BindView(R.id.loreal_layout)
-    RelativeLayout lorealLayout;
-
-    @BindView(R.id.revlon_layout)
-    RelativeLayout revlonLayout;
-
+    RelativeLayout maybellineLayout, lorealLayout, revlonLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,8 +31,14 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
+        init(view);
         getActivity().setTitle(getResources().getString(R.string.menu_home));
+    }
+
+    private void init(View view) {
+        maybellineLayout = view.findViewById(R.id.maybelline_layout);
+        lorealLayout = view.findViewById(R.id.loreal_layout);
+        revlonLayout = view.findViewById(R.id.revlon_layout);
     }
 
     @Override

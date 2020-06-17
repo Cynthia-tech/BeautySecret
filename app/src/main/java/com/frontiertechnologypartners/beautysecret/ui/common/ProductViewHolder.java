@@ -11,16 +11,9 @@ import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerItemClickL
 import com.frontiertechnologypartners.beautysecret.model.Product;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseViewHolder;
 
-import butterknife.BindView;
-
 public class ProductViewHolder extends BaseViewHolder<Product, OnRecyclerItemClickListener> {
-    @BindView(R.id.img_product)
     ImageView imgProduct;
-
-    @BindView(R.id.tv_product_color)
     TextView tvProductColor;
-
-    @BindView(R.id.tv_product_price)
     TextView tvProductPrice;
 
     private Context mContext;
@@ -28,6 +21,9 @@ public class ProductViewHolder extends BaseViewHolder<Product, OnRecyclerItemCli
     ProductViewHolder(View itemView, OnRecyclerItemClickListener listener) {
         super(itemView, listener);
         mContext = itemView.getContext();
+        imgProduct = itemView.findViewById(R.id.img_product);
+        tvProductColor = itemView.findViewById(R.id.tv_product_color);
+        tvProductPrice = itemView.findViewById(R.id.tv_product_price);
     }
 
     @Override

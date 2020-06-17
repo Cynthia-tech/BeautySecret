@@ -1,15 +1,12 @@
-package com.frontiertechnologypartners.beautysecret.ui.cart;
+package com.frontiertechnologypartners.beautysecret.ui.user.cart;
 
 import android.content.Context;
 import android.view.ViewGroup;
 
 import com.frontiertechnologypartners.beautysecret.R;
-import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerItemClickListener;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerMultiItemClickListener;
 import com.frontiertechnologypartners.beautysecret.model.Cart;
-import com.frontiertechnologypartners.beautysecret.model.Product;
 import com.frontiertechnologypartners.beautysecret.ui.base.GenericRecyclerViewAdapter;
-import com.frontiertechnologypartners.beautysecret.ui.common.ProductViewHolder;
 
 import androidx.annotation.NonNull;
 

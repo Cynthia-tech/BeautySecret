@@ -1,17 +1,17 @@
-package com.frontiertechnologypartners.beautysecret.ui.admin;
+package com.frontiertechnologypartners.beautysecret.ui.admin.admin_home;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.frontiertechnologypartners.beautysecret.MainActivity;
 import com.frontiertechnologypartners.beautysecret.R;
+import com.frontiertechnologypartners.beautysecret.ui.admin.add_new_product.AdminAddNewProductActivity;
+import com.frontiertechnologypartners.beautysecret.ui.admin.check_order.AdminCheckOrdersActivity;
+import com.frontiertechnologypartners.beautysecret.ui.admin.maintain_product.AdminMaintainProductActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.paperdb.Paper;
 
 public class AdminHomeActivity extends BaseActivity {

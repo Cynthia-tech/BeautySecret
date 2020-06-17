@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.admin.AdminOrderProductsActivity">
+    tools:context=".ui.admin.check_order.AdminOrderProductsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_order_products"

@@ -1,13 +1,10 @@
 package com.frontiertechnologypartners.beautysecret.ui.common;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.paperdb.Paper;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,20 +27,13 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCT_TYPE;
 
 public class ProductDetailActivity extends BaseActivity {
-    @BindView(R.id.product_image_details)
-    ImageView productImageDetail;
+    private ImageView productImageDetail;
+    private ElegantNumberButton numberButton;
+    private TextView tvProductNameDetail;
+    private TextView tvProductColorDetail;
+    private TextView tvProductPriceDetail;
+    private Button btnProductAddToCart;
 
-    @BindView(R.id.number_btn)
-    ElegantNumberButton numberButton;
-
-    @BindView(R.id.product_name_details)
-    TextView tvProductNameDetail;
-
-    @BindView(R.id.product_color_details)
-    TextView tvProductColorDetail;
-
-    @BindView(R.id.product_price_details)
-    TextView tvProductPriceDetail;
     private Product product;
     String saveCurrentTime, saveCurrentDate;
     private int productType;
@@ -52,7 +42,7 @@ public class ProductDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
-        ButterKnife.bind(this);
+        init();
 
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,42 +63,39 @@ public class ProductDetailActivity extends BaseActivity {
                     .placeholder(R.drawable.image_background)
                     .into(productImageDetail);
         }
-    }
+        btnProductAddToCart.setOnClickListener(v -> {
 
-    @OnClick(R.id.pd_add_to_cart_btn)
-    void productAddToCart() {
+            Calendar calForDate = Calendar.getInstance();
+            SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+            saveCurrentDate = currentDate.format(calForDate.getTime());
 
-        Calendar calForDate = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-        saveCurrentDate = currentDate.format(calForDate.getTime());
+            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+            saveCurrentTime = currentTime.format(calForDate.getTime());
+            String keyId = dbRef.push().getKey();
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentTime.format(calForDate.getTime());
-        String keyId = dbRef.push().getKey();
+            //login data
+            Users userData = Paper.book().read(LOGIN_USER_DATA);
 
-        //login data
-        Users userData = Paper.book().read(LOGIN_USER_DATA);
-
-        final HashMap<String, Object> cartMap = new HashMap<>();
-        cartMap.put("pname", tvProductNameDetail.getText().toString());
-        cartMap.put("price", product.getProductPrice());
-        cartMap.put("color", tvProductColorDetail.getText().toString());
-        cartMap.put("date", saveCurrentDate);
-        cartMap.put("time", saveCurrentTime);
-        cartMap.put("quantity", numberButton.getNumber());
+            final HashMap<String, Object> cartMap = new HashMap<>();
+            cartMap.put("pname", tvProductNameDetail.getText().toString());
+            cartMap.put("price", product.getProductPrice());
+            cartMap.put("color", tvProductColorDetail.getText().toString());
+            cartMap.put("date", saveCurrentDate);
+            cartMap.put("time", saveCurrentTime);
+            cartMap.put("quantity", numberButton.getNumber());
 //        String productRandomKey = saveCurrentDate + saveCurrentTime;
 
-        dbRef.child(CART_LIST).child(userData.getName())
-                .child(PRODUCTS).child(keyId)
-                .updateChildren(cartMap)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(ProductDetailActivity.this, "Added to Cart List.", Toast.LENGTH_SHORT).show();
+            dbRef.child(CART_LIST).child(userData.getName())
+                    .child(PRODUCTS).child(keyId)
+                    .updateChildren(cartMap)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(ProductDetailActivity.this, "Added to Cart List.", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(ProductDetailActivity.this, ProductsActivity.class);
-                        intent.putExtra(PRODUCT_TYPE, productType);
-                        startActivity(intent);
-                        finish();
+                            Intent intent = new Intent(ProductDetailActivity.this, ProductsActivity.class);
+                            intent.putExtra(PRODUCT_TYPE, productType);
+                            startActivity(intent);
+                            finish();
 //                        dbRef.child(CART_LIST).child(userData.getName())
 //                                .child(PRODUCTS).child(keyId)
 //                                .updateChildren(cartMap)
@@ -122,8 +109,18 @@ public class ProductDetailActivity extends BaseActivity {
 //                                        finish();
 //                                    }
 //                                });
-                    }
-                });
+                        }
+                    });
+        });
+    }
+
+    private void init() {
+        productImageDetail = findViewById(R.id.product_image_details);
+        numberButton = findViewById(R.id.number_btn);
+        tvProductNameDetail = findViewById(R.id.product_name_details);
+        tvProductColorDetail = findViewById(R.id.product_color_details);
+        tvProductPriceDetail = findViewById(R.id.product_price_details);
+        btnProductAddToCart = findViewById(R.id.pd_add_to_cart_btn);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.admin;
+package com.frontiertechnologypartners.beautysecret.ui.admin.check_order;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -7,7 +7,6 @@ import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerMultiItemClickListener;
 import com.frontiertechnologypartners.beautysecret.model.Cart;
 import com.frontiertechnologypartners.beautysecret.ui.base.GenericRecyclerViewAdapter;
-import com.frontiertechnologypartners.beautysecret.ui.cart.CartViewHolder;
 
 import androidx.annotation.NonNull;
 

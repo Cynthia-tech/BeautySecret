@@ -13,24 +13,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.admin.ManageProductsActivity" />
+        <activity android:name=".ui.admin.maintain_product.ManageProductsActivity" />
         <activity
-            android:name=".ui.admin.AdminMaintainProductActivity"
+            android:name=".ui.admin.maintain_product.AdminMaintainProductActivity"
             android:label="Maintain Products" />
         <activity
-            android:name=".ui.user.UserOrderHistoryActivity"
+            android:name=".ui.user.order.UserOrderHistoryActivity"
             android:label="@string/orders" />
         <activity
-            android:name=".ui.admin.AdminOrderProductsActivity"
+            android:name=".ui.admin.check_order.AdminOrderProductsActivity"
             android:label="@string/order_products" />
         <activity
-            android:name=".ui.admin.AdminCheckOrdersActivity"
+            android:name=".ui.admin.check_order.AdminCheckOrdersActivity"
             android:label="" />
         <activity
-            android:name=".ui.order.FinalConfirmOrderActivity"
+            android:name=".ui.user.order.FinalConfirmOrderActivity"
             android:label="@string/orders" />
         <activity
-            android:name=".ui.cart.CartActivity"
+            android:name=".ui.user.cart.CartActivity"
             android:label="@string/cart" />
         <activity
             android:name=".ui.common.ProductDetailActivity"
@@ -70,13 +70,13 @@
             android:name=".ui.common.BrandCategoryActivity"
             android:label="" />
         <activity
-            android:name=".ui.user.HomeActivity"
+            android:name=".ui.user.home.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.admin.AdminAddNewProductActivity" />
-        <activity android:name=".ui.admin.AdminHomeActivity" />
+        <activity android:name=".ui.admin.add_new_product.AdminAddNewProductActivity" />
+        <activity android:name=".ui.admin.admin_home.AdminHomeActivity" />
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name=".ui.user.register.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.login.LoginActivity"

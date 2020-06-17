@@ -1,16 +1,12 @@
-package com.frontiertechnologypartners.beautysecret.ui.user;
+package com.frontiertechnologypartners.beautysecret.ui.user.order;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,17 +15,12 @@ import android.widget.Toast;
 
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerMultiItemClickListener;
-import com.frontiertechnologypartners.beautysecret.model.Cart;
 import com.frontiertechnologypartners.beautysecret.model.Order;
 import com.frontiertechnologypartners.beautysecret.model.Users;
-import com.frontiertechnologypartners.beautysecret.ui.admin.OrderAdapter;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -42,10 +33,7 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.ORDER_PR
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS;
 
 public class UserOrderHistoryActivity extends BaseActivity implements OnRecyclerMultiItemClickListener {
-    @BindView(R.id.rv_orders)
     RecyclerView ordersRv;
-
-    @BindView(R.id.tv_no_orders)
     TextView tvNoOrders;
 
     private UserOrderAdapter orderAdapter;
@@ -56,7 +44,7 @@ public class UserOrderHistoryActivity extends BaseActivity implements OnRecycler
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_order_history);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -71,6 +59,11 @@ public class UserOrderHistoryActivity extends BaseActivity implements OnRecycler
         userData = Paper.book().read(LOGIN_USER_DATA);
 
         showOrders();
+    }
+
+    private void init() {
+        ordersRv = findViewById(R.id.rv_orders);
+        tvNoOrders = findViewById(R.id.tv_no_orders);
     }
 
     private void showOrders() {

@@ -1,10 +1,7 @@
-package com.frontiertechnologypartners.beautysecret.ui.register;
+package com.frontiertechnologypartners.beautysecret.ui.user.register;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.ContentResolver;
@@ -12,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +30,6 @@ import java.util.HashMap;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.USER;
 
 public class RegisterActivity extends BaseActivity {
-
     private CircleImageView imgProfile;
     private RelativeLayout userProfileLayout;
     private EditText etUserName, etPhoneNumber, etPassword, etConfirmPassword;

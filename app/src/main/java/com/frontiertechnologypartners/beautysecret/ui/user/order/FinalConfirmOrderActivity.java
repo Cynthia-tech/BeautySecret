@@ -1,10 +1,12 @@
-package com.frontiertechnologypartners.beautysecret.ui.order;
+package com.frontiertechnologypartners.beautysecret.ui.user.order;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -12,17 +14,13 @@ import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Cart;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.user.HomeActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.home.HomeActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.paperdb.Paper;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.CART_LIST;
@@ -33,17 +31,11 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS
 import static com.frontiertechnologypartners.beautysecret.util.Constant.TOTAL_PRICE;
 
 public class FinalConfirmOrderActivity extends BaseActivity {
-    @BindView(R.id.shippment_name)
     EditText etName;
-
-    @BindView(R.id.shippment_phone_number)
     EditText etPhoneNumber;
-
-    @BindView(R.id.shippment_address)
     EditText etAddress;
-
-    @BindView(R.id.shippment_city)
     EditText etCity;
+    Button btnOrderConfirm;
 
     private String totalPrice;
     private List<Cart> cartList;
@@ -52,28 +44,35 @@ public class FinalConfirmOrderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_confirm_order);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         totalPrice = getIntent().getStringExtra(TOTAL_PRICE);
         cartList = (ArrayList<Cart>) getIntent().getSerializableExtra(CART_LIST);
+
+        btnOrderConfirm.setOnClickListener(v -> {
+            if (TextUtils.isEmpty(etName.getText().toString())) {
+                Toast.makeText(FinalConfirmOrderActivity.this, "Please provide your full name.", Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(etPhoneNumber.getText().toString())) {
+                Toast.makeText(FinalConfirmOrderActivity.this, "Please provide your phone number.", Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(etAddress.getText().toString())) {
+                Toast.makeText(FinalConfirmOrderActivity.this, "Please provide your address.", Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(etCity.getText().toString())) {
+                Toast.makeText(FinalConfirmOrderActivity.this, "Please provide your city name.", Toast.LENGTH_SHORT).show();
+            } else {
+                order();
+            }
+        });
     }
 
-    @OnClick(R.id.confirm_final_order_btn)
-    void confirmOrder() {
-        if (TextUtils.isEmpty(etName.getText().toString())) {
-            Toast.makeText(this, "Please provide your full name.", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(etPhoneNumber.getText().toString())) {
-            Toast.makeText(this, "Please provide your phone number.", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(etAddress.getText().toString())) {
-            Toast.makeText(this, "Please provide your address.", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(etCity.getText().toString())) {
-            Toast.makeText(this, "Please provide your city name.", Toast.LENGTH_SHORT).show();
-        } else {
-            order();
-        }
+    private void init() {
+        etName = findViewById(R.id.shippment_name);
+        etPhoneNumber = findViewById(R.id.shippment_phone_number);
+        etAddress = findViewById(R.id.shippment_address);
+        etCity = findViewById(R.id.shippment_city);
+        btnOrderConfirm = findViewById(R.id.confirm_final_order_btn);
     }
 
     private void order() {

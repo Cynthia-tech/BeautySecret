@@ -1,11 +1,6 @@
-package com.frontiertechnologypartners.beautysecret.ui.admin;
+package com.frontiertechnologypartners.beautysecret.ui.admin.maintain_product;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import id.zelory.compressor.Compressor;
 
 import android.Manifest;
@@ -15,7 +10,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -28,12 +22,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Product;
+import com.frontiertechnologypartners.beautysecret.ui.admin.admin_home.AdminHomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.order.FinalConfirmOrderActivity;
-import com.frontiertechnologypartners.beautysecret.ui.user.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.storage.StorageReference;
 import com.karumi.dexter.Dexter;
@@ -54,32 +45,10 @@ import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCT_TYPE;
 
 public class ManageProductsActivity extends BaseActivity {
-    @BindView(R.id.spinner_brand_name)
-    Spinner brandNameSpinner;
-
-    @BindView(R.id.spinner_category_name)
-    Spinner categoryNameSpinner;
-
-    @BindView(R.id.spinner_sub_category_name)
-    Spinner subCategoryNameSpinner;
-
-    @BindView(R.id.img_product)
+    Spinner brandNameSpinner, categoryNameSpinner, subCategoryNameSpinner;
     ImageView imgProduct;
-
-    @BindView(R.id.et_product_name)
-    TextInputEditText etProductName;
-
-    @BindView(R.id.et_product_color)
-    TextInputEditText etProductColor;
-
-    @BindView(R.id.et_product_price)
-    TextInputEditText etProductPrice;
-
-    @BindView(R.id.update_product_btn)
-    Button updateProductBtn;
-
-    @BindView(R.id.delete_product_btn)
-    Button deleteProductBtn;
+    TextInputEditText etProductName, etProductColor, etProductPrice;
+    Button updateProductBtn, deleteProductBtn;
 
     private String brandName, productCategoryName, productSubCategoryName;
     private Uri imageUri;
@@ -95,7 +64,7 @@ public class ManageProductsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_products);
 
-        ButterKnife.bind(this);
+        init();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             updateProduct = (Product) bundle.getSerializable(PRODUCT);
@@ -331,7 +300,7 @@ public class ManageProductsActivity extends BaseActivity {
                 case 28:
                     brand = getResources().getString(R.string.revlon);
                     brandCategory = getResources().getString(R.string.eye_consmetic_title);
-                    product = getResources().getString(R.string.photoready_cheek_flushing_tint);
+                    product = getResources().getString(R.string.revlon_volumazing_mascara);
                     //brand name spinner
                     brandNameSpinner();
 
@@ -406,58 +375,67 @@ public class ManageProductsActivity extends BaseActivity {
         }
 
         imgProduct.setOnClickListener(v -> chooseImageFromGallery());
-    }
+        updateProductBtn.setOnClickListener(v -> {
+            productName = etProductName.getText().toString();
+            productColor = etProductColor.getText().toString();
+            productPrice = etProductPrice.getText().toString();
+            brandName = brandNameSpinner.getSelectedItem().toString();
+            productCategoryName = categoryNameSpinner.getSelectedItem().toString();
+            productSubCategoryName = subCategoryNameSpinner.getSelectedItem().toString();
 
-    @OnClick(R.id.update_product_btn)
-    void updateProduct() {
-        productName = etProductName.getText().toString();
-        productColor = etProductColor.getText().toString();
-        productPrice = etProductPrice.getText().toString();
-        brandName = brandNameSpinner.getSelectedItem().toString();
-        productCategoryName = categoryNameSpinner.getSelectedItem().toString();
-        productSubCategoryName = subCategoryNameSpinner.getSelectedItem().toString();
-
-        if (TextUtils.isEmpty(productName)) {
-            etProductName.setError(getString(R.string.require_product_name));
-            Toast.makeText(getApplicationContext(), R.string.require_product_name, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productColor)) {
-            etProductColor.setError(getString(R.string.require_product_color));
-            Toast.makeText(getApplicationContext(), R.string.require_product_color, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(productPrice)) {
-            etProductPrice.setError(getString(R.string.require_product_price));
-            Toast.makeText(getApplicationContext(), R.string.require_product_price, Toast.LENGTH_SHORT).show();
-        } else {
-            if (Util.isNetworkAvailable(getApplicationContext())) {
-                loadingBar.show();
-                if (imageUri == null) {
-                    saveProductInfoToDatabase();
-                } else {
-                    storeProductInformation();
-                }
+            if (TextUtils.isEmpty(productName)) {
+                etProductName.setError(getString(R.string.require_product_name));
+                Toast.makeText(getApplicationContext(), R.string.require_product_name, Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(productColor)) {
+                etProductColor.setError(getString(R.string.require_product_color));
+                Toast.makeText(getApplicationContext(), R.string.require_product_color, Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(productPrice)) {
+                etProductPrice.setError(getString(R.string.require_product_price));
+                Toast.makeText(getApplicationContext(), R.string.require_product_price, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                if (Util.isNetworkAvailable(getApplicationContext())) {
+                    loadingBar.show();
+                    if (imageUri == null) {
+                        saveProductInfoToDatabase();
+                    } else {
+                        storeProductInformation();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+                }
             }
-        }
+        });
+
+        deleteProductBtn.setOnClickListener(v -> {
+            brandName = brandNameSpinner.getSelectedItem().toString();
+            productCategoryName = categoryNameSpinner.getSelectedItem().toString();
+            productSubCategoryName = subCategoryNameSpinner.getSelectedItem().toString();
+
+            dbRef.child(PRODUCTS).child(brandName).child(productCategoryName)
+                    .child(productSubCategoryName).child(updateProduct.getProductId())
+                    .removeValue()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(ManageProductsActivity.this, AdminHomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(ManageProductsActivity.this, "product delete is successfully..", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
     }
 
-    @OnClick(R.id.delete_product_btn)
-    void deleteProduct() {
-        brandName = brandNameSpinner.getSelectedItem().toString();
-        productCategoryName = categoryNameSpinner.getSelectedItem().toString();
-        productSubCategoryName = subCategoryNameSpinner.getSelectedItem().toString();
-
-        dbRef.child(PRODUCTS).child(brandName).child(productCategoryName)
-                .child(productSubCategoryName).child(updateProduct.getProductId())
-                .removeValue()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Intent intent = new Intent(ManageProductsActivity.this, AdminHomeActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
-                        Toast.makeText(ManageProductsActivity.this, "product delete is successfully..", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    private void init() {
+        brandNameSpinner = findViewById(R.id.spinner_brand_name);
+        categoryNameSpinner = findViewById(R.id.spinner_category_name);
+        subCategoryNameSpinner = findViewById(R.id.spinner_sub_category_name);
+        imgProduct = findViewById(R.id.img_product);
+        etProductName = findViewById(R.id.et_product_name);
+        etProductColor = findViewById(R.id.et_product_color);
+        etProductPrice = findViewById(R.id.et_product_price);
+        updateProductBtn = findViewById(R.id.update_product_btn);
+        deleteProductBtn = findViewById(R.id.delete_product_btn);
     }
 
     private void chooseImageFromGallery() {

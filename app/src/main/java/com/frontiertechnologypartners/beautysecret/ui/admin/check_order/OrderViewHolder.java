@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.admin;
+package com.frontiertechnologypartners.beautysecret.ui.admin.check_order;
 
 import android.content.Context;
 import android.view.View;
@@ -10,33 +10,21 @@ import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerMultiItemC
 import com.frontiertechnologypartners.beautysecret.model.Order;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseViewHolder;
 
-import butterknife.BindView;
-
 public class OrderViewHolder extends BaseViewHolder<Order, OnRecyclerMultiItemClickListener> {
-
-    @BindView(R.id.tv_order_user_name)
-    TextView tvOrderUserName;
-
-    @BindView(R.id.tv_order_ph_no)
-    TextView tvOrderPhoneNo;
-
-    @BindView(R.id.tv_order_total_price)
-    TextView tvOrderTotalPrice;
-
-    @BindView(R.id.tv_order_date)
-    TextView tvOrderDate;
-
-    @BindView(R.id.tv_order_address)
-    TextView tvOrderAddress;
-
-    @BindView(R.id.show_order_products_btn)
-    Button showOrderProductBtn;
+    private TextView tvOrderUserName, tvOrderPhoneNo, tvOrderTotalPrice, tvOrderDate, tvOrderAddress;
+    private Button showOrderProductBtn;
 
     private Context mContext;
 
     OrderViewHolder(View itemView, OnRecyclerMultiItemClickListener listener) {
         super(itemView, listener);
         mContext = itemView.getContext();
+        tvOrderUserName = itemView.findViewById(R.id.tv_order_user_name);
+        tvOrderPhoneNo = itemView.findViewById(R.id.tv_order_ph_no);
+        tvOrderTotalPrice = itemView.findViewById(R.id.tv_order_total_price);
+        tvOrderDate = itemView.findViewById(R.id.tv_order_date);
+        tvOrderAddress = itemView.findViewById(R.id.tv_order_address);
+        showOrderProductBtn = itemView.findViewById(R.id.show_order_products_btn);
     }
 
     @Override

@@ -1,9 +1,5 @@
 package com.frontiertechnologypartners.beautysecret.ui.revlon;
 
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,23 +12,13 @@ import com.frontiertechnologypartners.beautysecret.ui.common.ProductsActivity;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCT_TYPE;
 
 public class RevlonFaceCosmeticActivity extends BaseActivity {
-    @BindView(R.id.product1_layout)
-    LinearLayout product1Layout;
-
-    @BindView(R.id.product2_layout)
-    LinearLayout product2Layout;
-
-    @BindView(R.id.product3_layout)
-    LinearLayout product3Layout;
-
-    @BindView(R.id.product4_layout)
-    LinearLayout product4Layout;
+    private LinearLayout product1Layout, product2Layout, product3Layout, product4Layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_revlon_face_cosmetic);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -61,6 +47,13 @@ public class RevlonFaceCosmeticActivity extends BaseActivity {
             startActivity(intent);
         });
 
+    }
+
+    private void init() {
+        product1Layout = findViewById(R.id.product1_layout);
+        product2Layout = findViewById(R.id.product2_layout);
+        product3Layout = findViewById(R.id.product3_layout);
+        product4Layout = findViewById(R.id.product4_layout);
     }
 
     @Override

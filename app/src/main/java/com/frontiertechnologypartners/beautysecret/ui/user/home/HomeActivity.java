@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.user;
+package com.frontiertechnologypartners.beautysecret.ui.user.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,40 +10,31 @@ import com.frontiertechnologypartners.beautysecret.MainActivity;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.cart.CartActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.cart.CartActivity;
 import com.frontiertechnologypartners.beautysecret.ui.common.HomeFragment;
+import com.frontiertechnologypartners.beautysecret.ui.user.order.UserOrderHistoryActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    @BindView(R.id.nav_view)
     NavigationView navigationView;
-
-    @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+        init();
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -66,6 +57,12 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 .error(R.drawable.profile)
                 .into(headerViewHolder.imgUserProfileImage);
 
+    }
+
+    private void init() {
+        toolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
     }
 
     @Override

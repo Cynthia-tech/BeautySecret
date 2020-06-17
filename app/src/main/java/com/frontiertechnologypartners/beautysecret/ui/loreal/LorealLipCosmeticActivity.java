@@ -9,30 +9,16 @@ import android.widget.LinearLayout;
 import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
 import com.frontiertechnologypartners.beautysecret.ui.common.ProductsActivity;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCT_TYPE;
 
 public class LorealLipCosmeticActivity extends BaseActivity {
-    @BindView(R.id.product1_layout)
-    LinearLayout product1Layout;
-
-    @BindView(R.id.product2_layout)
-    LinearLayout product2Layout;
-
-    @BindView(R.id.product3_layout)
-    LinearLayout product3Layout;
-
-    @BindView(R.id.product4_layout)
-    LinearLayout product4Layout;
+    private LinearLayout product1Layout, product2Layout, product3Layout, product4Layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loreal_lip_cosmetic);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -60,6 +46,13 @@ public class LorealLipCosmeticActivity extends BaseActivity {
             intent.putExtra(PRODUCT_TYPE, 24);
             startActivity(intent);
         });
+    }
+
+    private void init() {
+        product1Layout = findViewById(R.id.product1_layout);
+        product2Layout = findViewById(R.id.product2_layout);
+        product3Layout = findViewById(R.id.product3_layout);
+        product4Layout = findViewById(R.id.product4_layout);
     }
 
     @Override

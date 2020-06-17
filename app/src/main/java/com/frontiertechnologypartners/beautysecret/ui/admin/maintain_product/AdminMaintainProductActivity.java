@@ -1,4 +1,4 @@
-package com.frontiertechnologypartners.beautysecret.ui.admin;
+package com.frontiertechnologypartners.beautysecret.ui.admin.maintain_product;
 
 import android.os.Bundle;
 import android.view.MenuItem;

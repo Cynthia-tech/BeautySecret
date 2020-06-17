@@ -47,8 +47,8 @@ dependencies {
     //TextPathView
     implementation 'com.yanzhikai:TextPathView:0.2.1'
     //Butter Knife
-    implementation 'com.jakewharton:butterknife:10.2.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+//    implementation 'com.jakewharton:butterknife:10.2.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation 'com.google.android.material:material:1.1.0'
     //Paper
     implementation 'io.paperdb:paperdb:2.7.1'

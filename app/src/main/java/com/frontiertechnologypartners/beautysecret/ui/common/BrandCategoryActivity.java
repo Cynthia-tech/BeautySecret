@@ -19,24 +19,13 @@ import com.frontiertechnologypartners.beautysecret.ui.maybelline.MaybellineLipCo
 import com.frontiertechnologypartners.beautysecret.ui.revlon.RevlonEyeCosmeticActivity;
 import com.frontiertechnologypartners.beautysecret.ui.revlon.RevlonFaceCosmeticActivity;
 import com.frontiertechnologypartners.beautysecret.ui.revlon.RevlonLipCosmeticActivity;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import static com.frontiertechnologypartners.beautysecret.util.Constant.BRAND_NAME;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOREAL_BRANDS;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.MAYBELLINE_BRANDS;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.REVLON_BRANDS;
 
 public class BrandCategoryActivity extends BaseActivity {
-    @BindView(R.id.eye_layout)
-    RelativeLayout eyeCosmeticLayout;
-
-    @BindView(R.id.face_layout)
-    RelativeLayout faceCosmeticLayout;
-
-    @BindView(R.id.lip_layout)
-    RelativeLayout lipCosmeticLayout;
+    RelativeLayout lipCosmeticLayout, eyeCosmeticLayout, faceCosmeticLayout;
 
     private String brandName;
 
@@ -44,7 +33,7 @@ public class BrandCategoryActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brand_category);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -106,6 +95,12 @@ public class BrandCategoryActivity extends BaseActivity {
                     break;
             }
         });
+    }
+
+    private void init() {
+        lipCosmeticLayout = findViewById(R.id.lip_layout);
+        eyeCosmeticLayout = findViewById(R.id.eye_layout);
+        faceCosmeticLayout = findViewById(R.id.face_layout);
     }
 
     @Override

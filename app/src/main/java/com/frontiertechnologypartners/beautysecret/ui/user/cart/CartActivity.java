@@ -1,19 +1,13 @@
-package com.frontiertechnologypartners.beautysecret.ui.cart;
+package com.frontiertechnologypartners.beautysecret.ui.user.cart;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -24,12 +18,10 @@ import com.frontiertechnologypartners.beautysecret.R;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerItemClickListener;
 import com.frontiertechnologypartners.beautysecret.delegate.OnRecyclerMultiItemClickListener;
 import com.frontiertechnologypartners.beautysecret.model.Cart;
-import com.frontiertechnologypartners.beautysecret.model.Product;
 import com.frontiertechnologypartners.beautysecret.model.Users;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.order.FinalConfirmOrderActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.order.FinalConfirmOrderActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
-import com.frontiertechnologypartners.beautysecret.widget.GridSpacingItemDecoration;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,24 +32,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.frontiertechnologypartners.beautysecret.util.Constant.ADMIN_VIEW;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.CART_LIST;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.LOGIN_USER_DATA;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.PRODUCTS;
 import static com.frontiertechnologypartners.beautysecret.util.Constant.TOTAL_PRICE;
-import static com.frontiertechnologypartners.beautysecret.util.Constant.USER_VIEW;
 
 public class CartActivity extends BaseActivity implements OnRecyclerItemClickListener, OnRecyclerMultiItemClickListener {
-    @BindView(R.id.rv_cart_list)
     RecyclerView rvCartList;
-
-    @BindView(R.id.tv_no_cart)
     TextView tvNoCart;
-
-    @BindView(R.id.tv_pd_total_price)
     TextView tvTotalPrice;
-
-    @BindView(R.id.btn_next)
     Button btnNext;
 
     private CartAdapter cartAdapter;
@@ -69,7 +52,7 @@ public class CartActivity extends BaseActivity implements OnRecyclerItemClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_activiity);
-        ButterKnife.bind(this);
+        init();
         //back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -91,6 +74,13 @@ public class CartActivity extends BaseActivity implements OnRecyclerItemClickLis
             intent.putExtra(CART_LIST, (Serializable) cartList);
             startActivity(intent);
         });
+    }
+
+    private void init() {
+        rvCartList = findViewById(R.id.rv_cart_list);
+        tvNoCart = findViewById(R.id.tv_no_cart);
+        tvTotalPrice = findViewById(R.id.tv_pd_total_price);
+        btnNext = findViewById(R.id.btn_next);
     }
 
     private void retrieveCartList() {

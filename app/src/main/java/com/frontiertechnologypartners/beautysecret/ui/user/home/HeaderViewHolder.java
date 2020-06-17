@@ -1,23 +1,17 @@
-package com.frontiertechnologypartners.beautysecret.ui.user;
+package com.frontiertechnologypartners.beautysecret.ui.user.home;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.frontiertechnologypartners.beautysecret.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HeaderViewHolder {
-
-    @BindView(R.id.user_profile_name)
     TextView tvUserName;
-
-    @BindView(R.id.user_profile_image)
     CircleImageView imgUserProfileImage;
 
     HeaderViewHolder(View view) {
-        ButterKnife.bind(this, view);
+        tvUserName = view.findViewById(R.id.user_profile_name);
+        imgUserProfileImage = view.findViewById(R.id.user_profile_image);
     }
 }

@@ -2,31 +2,23 @@ package com.frontiertechnologypartners.beautysecret;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.frontiertechnologypartners.beautysecret.ui.admin.AdminHomeActivity;
+import com.frontiertechnologypartners.beautysecret.ui.admin.admin_home.AdminHomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.base.BaseActivity;
-import com.frontiertechnologypartners.beautysecret.ui.user.HomeActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.home.HomeActivity;
 import com.frontiertechnologypartners.beautysecret.ui.login.LoginActivity;
-import com.frontiertechnologypartners.beautysecret.ui.register.RegisterActivity;
+import com.frontiertechnologypartners.beautysecret.ui.user.register.RegisterActivity;
 import com.frontiertechnologypartners.beautysecret.util.Util;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.paperdb.Paper;
 import yanzhikai.textpath.SyncTextPathView;
 import yanzhikai.textpath.painter.FireworksPainter;
 
 import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_ADMIN_LOGIN;
-import static com.frontiertechnologypartners.beautysecret.util.Constant.IS_FIRST_TIME_LUNCH;
 
 public class MainActivity extends BaseActivity {
     private SyncTextPathView tvTitle;

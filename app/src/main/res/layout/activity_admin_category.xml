@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.admin.AdminHomeActivity">
+    tools:context=".ui.admin.admin_home.AdminHomeActivity">
 
     <Button
         android:id="@+id/admin_add_product_btn"
